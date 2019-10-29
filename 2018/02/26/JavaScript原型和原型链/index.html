@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="jianjian">
+
+
+
+
+
+<title>JavaScript原型和原型链 | imjianjian</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">imjianjian&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">imjianjian&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">JavaScript原型和原型链</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">jianjian</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">February 26, 2018&nbsp;&nbsp;16:24:49</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>javascript不包含传统的类继承模型，而是使用 prototype 原型模型。<br>虽然这经常被当作是 JavaScript 的缺点被提及，其实基于原型的继承模型比传统的类继承还要强大。实现传统的类继承模型是很简单，但是实现 JavaScript 中的原型继承则要困难的多。ES6新增加的class语法糖使得这种继承方式实现起来更加简单，但其原理还是原型继承，而不是类继承。<br>由于 JavaScript 是唯一一个被广泛使用的基于原型继承的语言，所以理解两种继承模式的差异是需要一定时间的，今天我们就来了解一下原型和原型链。</p>
+<h1 id="函数对象和普通对象"><a href="#函数对象和普通对象" class="headerlink" title="函数对象和普通对象"></a>函数对象和普通对象</h1><p>javascript中的对象分为函数对象和普通对象。其区分起来也很简单，<strong>所有Function的实例都是函数对象，其他的都是普通对象</strong>，Object和Function都是函数对象。</p>
+<p>函数对象在javascript中起到模拟类的作用，我们可以使用<strong>new</strong>来创建一个函数对象的实例，这个实例是一个普通对象，它通过__proto__从函数对象的prototype中继承属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var Person = function()&#123;&#125;;</span><br><span class="line">Person.prototype.name = &apos;xiaoming&apos;;</span><br><span class="line">Person.prototype.age = 17;</span><br><span class="line"></span><br><span class="line">var p1 = new Person()</span><br><span class="line"></span><br><span class="line">p1.name; //&apos;xiaoming&apos;</span><br><span class="line">p1.age; //17</span><br><span class="line">p1.hasOwnProperty(&apos;name&apos;); //false,name属性是从原型处获得的</span><br><span class="line">p1.__proto__; //&#123;name: &quot;xiaoming&quot;, age: 17, constructor: ƒ&#125;</span><br><span class="line">p1.__proto__ == Person.prototype; //true</span><br></pre></td></tr></table></figure>
+
+<h1 id="prototype和-proto"><a href="#prototype和-proto" class="headerlink" title="prototype和__proto__"></a>prototype和__proto__</h1><p>由上面的例子可以得知，原型继承是由prototype和__proto__两个属性来完成的，只要知道这两个属性分别指向哪儿，他们是如何工作的，那么就能弄明白原型继承了。</p>
+<p>这里依旧使用上面的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var Person = function()&#123;&#125;;</span><br><span class="line">Person.prototype.name = &apos;xiaoming&apos;;</span><br><span class="line">Person.prototype.age = 17;</span><br><span class="line"></span><br><span class="line">var p1 = new Person()</span><br><span class="line"></span><br><span class="line">p1.prototype;                       //undefined,普通对象没有prototype</span><br><span class="line">p1.__proto__ == Person.prototype; //true</span><br><span class="line"></span><br><span class="line">Person.prototype; //&#123;name: &quot;xiaoming&quot;, age: 17, constructor: ƒ&#125;</span><br><span class="line">Person.__proto__ == Function.prototype;         //true</span><br><span class="line">Person.prototype.__proto__ == Object.prototype; //true</span><br><span class="line"></span><br><span class="line">Function.__proto__ == Function.prototype;           //true</span><br><span class="line">Function.prototype.__proto__ == Object.prototype;   //true</span><br><span class="line"></span><br><span class="line">Object.__proto__ == Function.prototype; //true;</span><br><span class="line">Object.prototype.__proto__ == null;     //true</span><br></pre></td></tr></table></figure>
+
+<p>由上述的例子可以得知：</p>
+<blockquote>
+<ul>
+<li><strong>普通对象没有prototype属性，只有__proto__属性，而函数对象都有</strong></li>
+<li><strong>普通对象的__proto__属性都指向其原型函数对象的prototype</strong></li>
+<li><strong>函数对象的__proto__属性都指向Function.prototype,Object的__proto__属性也是</strong></li>
+<li><strong>函数对象的prototype.__proto__属性都指向Object.prototype,除了Object.prototype.__proto__ –&gt; null</strong></li>
+</ul>
+</blockquote>
+<p>我们通过new来创建函数对象的实例，而一个实例不是不能再实例化的，所以普通对象没有prototype就很好理解了。</p>
+<p>而对于函数对象来说</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">typeof Person.prototype //&quot;object&quot;</span><br><span class="line">Person.prototype.__proto__ == Object.prototype //true</span><br></pre></td></tr></table></figure>
+<p>这里把原型对象prototype单独拿出来，它其实是一个object，它存放了函数对象需要被继承的属性，以及构造函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Person.__proto__ =  Funtion.prototype</span><br><span class="line"></span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    name:&quot;xiaoming&quot;,</span><br><span class="line">    age:17,</span><br><span class="line"></span><br><span class="line">    constructor:Person,    </span><br><span class="line">    __proto__:object //Object.prototype</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所有函数对象的__proto__属性都指向Function.prototype，包括Function自身的__proto__属性和Object的__proto__属性</p>
+<p>作为所有对象的原型Object，普通对象的__proto__属性都指向Object.prototype。而Object.prototype.__proto__ = null,万物都是由无到有，原型链的末端就是null了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p1.__proto__ == Person.prototype;            //true</span><br><span class="line">p1.__proto__.__proto__ == Object.prototype;  //true</span><br><span class="line">p1.__proto__.__proto__.__proto__ == null;    //true</span><br></pre></td></tr></table></figure>
+
+<p>由此可以再得到一个结论</p>
+<blockquote>
+<p>__proto__和prototype在原型链中是自动分配的，__proto__用于连接对象和原型对象，prototype用于保存原型属性，构造函数和__proto__属性</p>
+</blockquote>
+<p>这里再引用一张图</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/2/27/161d355ad49d78e2?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p>
+<center>图片来自：https://juejin.im/post/5a944f485188257a804aba6d#heading-5</center>
+
+<p>通过这张图应该就能很清楚的看到对象之间的继承关系了。</p>
+<h1 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var Person = function(name,age)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.age = age</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.getName = function()&#123;</span><br><span class="line">    return this.name;</span><br><span class="line">&#125;;</span><br><span class="line">Person.prototype.getAge = function()&#123;</span><br><span class="line">    return this.age;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var p1 = new Person(&apos;xiaoming&apos;,17);</span><br><span class="line">p1.name; //&apos;xiaoming&apos;;</span><br></pre></td></tr></table></figure>
+<p>这里在Person上建立构造函数，在执行new操作时会执行这个构造函数。现在得到的p1是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    name:&quot;xiaoming&quot;,</span><br><span class="line">    age:17,</span><br><span class="line">    __proto__:object  //Person.prototype</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在来试试多重继承</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var A = function()&#123;&#125;;</span><br><span class="line">A.prototype.a = 1;</span><br><span class="line">A.prototype.b = 2;</span><br><span class="line"></span><br><span class="line">var B = function()&#123;&#125;</span><br><span class="line">B.prototype.__proto__ = A.prototype;</span><br><span class="line">B.prototype.a = 3;</span><br><span class="line"></span><br><span class="line">var c = new B();</span><br><span class="line">c.a  //3</span><br><span class="line">c.b  //2</span><br></pre></td></tr></table></figure>
+<p>这里我们让B继承于A,再实例化一个B。执行c.a时，c自身并没有这个属性，于是它顺着原型链去寻找a属性，首先是a.__proto__即B.prototype,B的原型对象上有这个属性，于是它便不再继续寻找，返回了3。执行c.b时同理，在B的原型对象上不存在b属性，于是继续顺着原型链寻找，在A的原型对象上找到了b属性，返回2。</p>
+<h1 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h1><p>constructor永远指向函数本身，所以在上面的例子中可以使用函数本身作为构造函数，构造函数中属性会直接赋值在实例上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var Person = function(name,age)&#123;</span><br><span class="line">    this.name = &apos;xiaoming&apos;;</span><br><span class="line">    this.age = 17</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var p1 = new Person();</span><br></pre></td></tr></table></figure>
+<p>此时p1对象结构为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    name:&apos;xiaoming&apos;,</span><br><span class="line">    age:17,</span><br><span class="line">    __proto__:object //Person.prototype</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Person.prototype.constructor == Person //true</span><br><span class="line">Person.prototype.constructor.prototype.constructor == Person //true</span><br></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><blockquote>
+<p>对象通过__proto__来连接原型对象prototype，也通过__proto__来进行原型链上的属性查找，直到原型链的末端:Object.prototype.__proto__–&gt;null。</p>
+</blockquote>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>jianjian</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2018/02/26/JavaScript%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/">http://yoursite.com/2018/02/26/JavaScript%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/JavaScript/"># JavaScript</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();" target="_blank" rel="noopener">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2018/07/09/Grid-Layout-%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">Grid Layout 快速上手</a>
+            
+            
+            <a class="next" rel="next" href="/2018/02/08/%E7%94%A8%E4%B8%80%E4%B8%AAhello%20world%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0webpack/">用一个hello world项目学习webpack</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© jianjian | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

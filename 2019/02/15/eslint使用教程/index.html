@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="jianjian">
+
+
+
+
+
+<title>eslint使用教程 | imjianjian</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">imjianjian&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">imjianjian&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">eslint使用教程</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">jianjian</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">February 15, 2019&nbsp;&nbsp;10:20:01</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li>检查语法错误</li>
+<li>检查语法风格</li>
+<li>修正语法</li>
+</ul>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//项目内安装</span><br><span class="line">npm i -D eslint</span><br><span class="line"></span><br><span class="line">//全局安装</span><br><span class="line">npm i -g eslint</span><br></pre></td></tr></table></figure>
+
+<h2 id="初始化配置"><a href="#初始化配置" class="headerlink" title="初始化配置"></a>初始化配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eslint --init</span><br></pre></td></tr></table></figure>
+<p>运行该命令将会在目录下生成一个.eslintrc(.js|.json|.yml)文件，该文件就是eslint规则的配置文件</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;rules&quot;: &#123;</span><br><span class="line">        &quot;semi&quot;: [&quot;error&quot;, &quot;always&quot;],</span><br><span class="line">        &quot;quotes&quot;: [&quot;error&quot;, &quot;double&quot;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>“semi”和”quotes”就是ESLint中的配置规则名，[“error”, “always”]和[“error”, “double”]就是对应的配置，”error”参数代表该规则的错误等级，该等级有”off”,”warn”,”error”三种。”always”和”double”则是具体的配置项。</p>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;env&quot;: &#123;</span><br><span class="line">        &quot;browser&quot;: true,</span><br><span class="line">        &quot;node&quot;: true</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可配置的环境还有:</p>
+<ul>
+<li>browser - 浏览器全局变量。</li>
+<li>node - Node.js全局变量和Node.js范围。</li>
+<li>commonjs - CommonJS全局变量和CommonJS范围（将此用于使用Browserify / WebPack的仅浏览器代码）。</li>
+<li>shared-node-browser - Node.js和Browser共有的全局变量。</li>
+<li>es6- 启用除模块之外的所有ECMAScript 6功能（这会自动将ecmaVersion解析器选项设置为6）。</li>
+<li>worker - worker全局变量。</li>
+<li>amd- 根据amd规范定义require()和define()作为全局变量。</li>
+<li>mocha - 添加所有Mocha测试全局变量。</li>
+<li>jasmine - 为版本1.3和2.0添加了所有Jasmine测试全局变量。</li>
+<li>jest - Jest全局变量。</li>
+<li>phantomjs - PhantomJS全局变量。</li>
+<li>protractor - Protractor全局变量。</li>
+<li>qunit - QUnit全局变量。</li>
+<li>jquery - jQuery全局变量。</li>
+<li>prototypejs - Prototype.js全局变量。</li>
+<li>shelljs - ShellJS全局变量。</li>
+<li>meteor - meteor全球变量。</li>
+<li>mongo - MongoDB全局变量。</li>
+<li>applescript - AppleScript全局变量。</li>
+<li>nashorn - Java 8 Nashorn全局变量。</li>
+<li>serviceworker - serviceworker全局变量。</li>
+<li>atomtest - atom test辅助全局变量。</li>
+<li>embertest - Ember测试辅助全局变量。</li>
+<li>webextensions - WebExtensions全局变量。</li>
+<li>greasemonkey - GreaseMonkey全局变量。</li>
+</ul>
+<h2 id="配置插件"><a href="#配置插件" class="headerlink" title="配置插件"></a>配置插件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;plugins&quot;: [</span><br><span class="line">        &quot;plugin1&quot;,</span><br><span class="line">        &quot;eslint-plugin-plugin2&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="让一组文件不接受规则校验"><a href="#让一组文件不接受规则校验" class="headerlink" title="让一组文件不接受规则校验"></a>让一组文件不接受规则校验</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;rules&quot;: &#123;...&#125;,</span><br><span class="line">  &quot;overrides&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;files&quot;: [&quot;*-test.js&quot;,&quot;*.spec.js&quot;],</span><br><span class="line">      &quot;rules&quot;: &#123;</span><br><span class="line">        &quot;no-unused-expressions&quot;: &quot;off&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="忽略一些文件"><a href="#忽略一些文件" class="headerlink" title="忽略一些文件"></a>忽略一些文件</h2><p>需要添加.eslintignore,内容格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">**/*.js</span><br><span class="line">**/*.js</span><br><span class="line">**/*.js</span><br><span class="line">**/*.js</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置扩展文件"><a href="#配置扩展文件" class="headerlink" title="配置扩展文件"></a>配置扩展文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;rules&quot;:&#123;...&#125;,</span><br><span class="line">    &quot;extends&quot;:&quot;airbnb-base&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>rules中的规则会覆盖扩展中的规则</p>
+<h1 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h1><p>在全局安装的情况下，可以使用eslint命令行</p>
+<h2 id="校验文件"><a href="#校验文件" class="headerlink" title="校验文件"></a>校验文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eslint file.js</span><br></pre></td></tr></table></figure>
+
+<h2 id="指定配置文件"><a href="#指定配置文件" class="headerlink" title="指定配置文件"></a>指定配置文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eslint -c myconfig file.js</span><br></pre></td></tr></table></figure>
+
+<h2 id="修复语法"><a href="#修复语法" class="headerlink" title="修复语法"></a>修复语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eslint --fix file.js</span><br></pre></td></tr></table></figure>
+
+<h2 id="将错误报告输出"><a href="#将错误报告输出" class="headerlink" title="将错误报告输出"></a>将错误报告输出</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eslint -f html file.js -o out.html</span><br></pre></td></tr></table></figure>
+<p>-o: 输出文件名<br>-f: 输出文件格式</p>
+<p>可接受格式有:</p>
+<ul>
+<li>checkstyle</li>
+<li>codeframe</li>
+<li>compact</li>
+<li>html</li>
+<li>jslint-xml</li>
+<li>json</li>
+<li>junit</li>
+<li>stylish (the default)</li>
+<li>table</li>
+<li>tap</li>
+<li>unix</li>
+<li>visualstudio</li>
+</ul>
+<h2 id="有色输出"><a href="#有色输出" class="headerlink" title="有色输出"></a>有色输出</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eslint --color file.js</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加缓存"><a href="#添加缓存" class="headerlink" title="添加缓存"></a>添加缓存</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eslint --cache file.js</span><br></pre></td></tr></table></figure>
+
+<p>会记录已经校验过的文件，优化eslint性能</p>
+<h1 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h1><p>见官网:<a href="https://eslint.org/docs/rules/" target="_blank" rel="noopener">https://eslint.org/docs/rules/</a></p>
+<h1 id="扩展推荐"><a href="#扩展推荐" class="headerlink" title="扩展推荐"></a>扩展推荐</h1><ul>
+<li>eslint-config-airbnb-base</li>
+<li>eslint-config-standard</li>
+<li>eslint-config-alloy</li>
+<li>eslint-config-google</li>
+<li>eslint-config-prettier</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>jianjian</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2019/02/15/eslint%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">http://yoursite.com/2019/02/15/eslint%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"># 前端开发工具</a>
+                    
+                        <a href="/tags/eslint/"># eslint</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();" target="_blank" rel="noopener">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/02/27/node-js-%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95/">node.js 调试方法</a>
+            
+            
+            <a class="next" rel="next" href="/2019/02/02/centOS-%E6%9C%80%E5%B0%8F%E5%8C%96%E5%AE%89%E8%A3%85%E5%85%A5%E5%9D%91%E5%AE%9E%E8%B7%B5/">centOS 最小化安装入坑实践</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© jianjian | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

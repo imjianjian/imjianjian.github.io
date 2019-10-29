@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="jianjian">
+
+
+
+
+
+<title>Grunt快速入门 | imjianjian</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">imjianjian&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">imjianjian&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Grunt快速入门</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">jianjian</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">January 14, 2018&nbsp;&nbsp;9:40:12</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><ul>
+<li>首先，grunt依赖Nodejs和npm环境</li>
+<li>使用npm安装grunt-cli命令行工具</li>
+<li>全局安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g grunt-cli</span><br></pre></td></tr></table></figure></li>
+<li>在项目中添加<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install grunt --save-dev</span><br></pre></td></tr></table></figure></li>
+<li>在项目根目录下创建Gruntfile.js文件</li>
+</ul>
+<h1 id="Gruntfile-js文件结构"><a href="#Gruntfile-js文件结构" class="headerlink" title="Gruntfile.js文件结构"></a>Gruntfile.js文件结构</h1><ul>
+<li>一个’wrapper’方法</li>
+<li>配置项目和任务<ul>
+<li>task //任务<ul>
+<li>target //任务子项<ul>
+<li>options //任务的配置参数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>加载grunt插件</li>
+<li>配置任务</li>
+</ul>
+<h2 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h2><p>作为Task就是一个个任务<br>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">copy: &#123;</span><br><span class="line">    html: &#123;</span><br><span class="line">        files: [&#123;</span><br><span class="line">            expand: true,</span><br><span class="line">            cwd: &apos;./src/&apos;,</span><br><span class="line">            src: &apos;**/**.html&apos;,</span><br><span class="line">            dest: &apos;./dist/&apos;</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;,</span><br><span class="line">    js:&#123;</span><br><span class="line">        files:[&#123;</span><br><span class="line">            expand:true,</span><br><span class="line">            cwd:&apos;./src/&apos;,</span><br><span class="line">            src:&apos;**/**.js&apos;,</span><br><span class="line">            dest:&apos;./dist/&apos;</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个任务就是将html和js文件都复制到dist目录下</p>
+<h2 id="target"><a href="#target" class="headerlink" title="target"></a>target</h2><p>而target则是任务中针对不同操作分配的子项，在上述copy任务中，html和js就是两个target，他们分别负责复制不同的文件。</p>
+<h2 id="options"><a href="#options" class="headerlink" title="options"></a>options</h2><p>options就是每个任务的配置项目，在上述的copy任务中，expand,cwd,src,dest都是options</p>
+<h2 id="完整的Gruntfile-js示例"><a href="#完整的Gruntfile-js示例" class="headerlink" title="完整的Gruntfile.js示例"></a>完整的Gruntfile.js示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">//wrapper函数</span><br><span class="line">module.exports = function (grunt) &#123;</span><br><span class="line">    //配置项目和任务</span><br><span class="line">    grunt.initConfig(&#123;</span><br><span class="line">        pkg: grunt.file.readJSON(&apos;package.json&apos;),</span><br><span class="line">        //复制html和图片文件到dist</span><br><span class="line">        copy: &#123;</span><br><span class="line">            html: &#123;</span><br><span class="line">                files: [&#123;</span><br><span class="line">                    expand: true,</span><br><span class="line">                    cwd: &apos;./src/&apos;,</span><br><span class="line">                    src: &apos;**/**.html&apos;,</span><br><span class="line">                    dest: &apos;./dist/&apos;</span><br><span class="line">                &#125;]</span><br><span class="line">            &#125;,</span><br><span class="line">            js:&#123;</span><br><span class="line">                files:[&#123;</span><br><span class="line">                    expand:true,</span><br><span class="line">                    cwd:&apos;./src/&apos;,</span><br><span class="line">                    src:&apos;**/**.js&apos;,</span><br><span class="line">                    dest:&apos;./dist/&apos;</span><br><span class="line">                &#125;]</span><br><span class="line">            &#125;,</span><br><span class="line">            images: &#123;</span><br><span class="line">                files: [&#123;</span><br><span class="line">                    expand: true,</span><br><span class="line">                    cwd: &apos;./src/images&apos;,</span><br><span class="line">                    src: &apos;*&apos;,</span><br><span class="line">                    dist: &apos;./dist/images/&apos;,</span><br><span class="line">                &#125;]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        //合并js</span><br><span class="line">        concat:&#123;</span><br><span class="line">            dist: &#123;</span><br><span class="line">                file: &#123;</span><br><span class="line">                    &apos;./dist/js/all.js&apos;:[&apos;./dist/js/a1.js&apos;,&apos;./dist/js/a2.js&apos;]</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        //sass</span><br><span class="line">        sass: &#123;</span><br><span class="line">            output: &#123;</span><br><span class="line">                files: &#123;</span><br><span class="line">                    &apos;./dist/css/style.css&apos;: &apos;./src/less/a.sass&apos;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        //压缩</span><br><span class="line">        uglify: &#123;</span><br><span class="line">            uglifyjs: &#123;</span><br><span class="line">                files: &#123;</span><br><span class="line">                    &apos;./dist/js/all.js&apos;: [&apos;./dist/js/all.js&apos;]</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        //打开服务器</span><br><span class="line">        connect: &#123;</span><br><span class="line">            options: &#123;</span><br><span class="line">                port: 9000,</span><br><span class="line">                open: true,</span><br><span class="line">                livareload: 35729,</span><br><span class="line">                //change this to &apos;0.0.0.0&apos; to access the server from outside</span><br><span class="line">                hostname: &apos;localhost&apos;</span><br><span class="line">            &#125;,</span><br><span class="line">            server: &#123;</span><br><span class="line">                options: &#123;</span><br><span class="line">                    port: 9001,</span><br><span class="line">                    base: &apos;./&apos;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    //加载插件</span><br><span class="line">    grunt.loadNpmTasks(&apos;grunt-contrib-copy&apos;);</span><br><span class="line">    grunt.loadNpmTasks(&apos;grunt-contrib-concat&apos;);</span><br><span class="line">    grunt.loadNpmTasks(&apos;grunt-contrib-sass&apos;);</span><br><span class="line">    grunt.loadNpmTasks(&apos;grunt-contrib-jshint&apos;);</span><br><span class="line">    grunt.loadNpmTasks(&apos;grunt-contrib-uglify&apos;);</span><br><span class="line">    grunt.loadNpmTasks(&apos;grunt-contrib-watch&apos;);</span><br><span class="line">    grunt.loadNpmTasks(&apos;grunt-contrib-connect&apos;);</span><br><span class="line">    //注册任务</span><br><span class="line">    grunt.registerTask(&apos;copyhtml&apos;, [&apos;copy:html&apos;]); //可以用task：target的方法分别注册</span><br><span class="line">    grunt.registerTask(&apos;concatjs&apos;, [&apos;concat&apos;]); //也可以只用task名称注册，默认执行task下全部target</span><br><span class="line">    grunt.registerTask(&apos;outputcss&apos;, [&apos;sass&apos;]);</span><br><span class="line">    // grunt.registerTask(&apos;watchit&apos;, [&apos;concat&apos;, &apos;sass&apos;, &apos;jshint&apos;, &apos;uglify&apos;, &apos;connect&apos;, &apos;watch&apos;]);</span><br><span class="line">    grunt.registerTask(&apos;default&apos;, [&apos;copy&apos;, &apos;concat&apos;, &apos;sass&apos;, &apos;uglify&apos;]);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="配置任务"><a href="#配置任务" class="headerlink" title="配置任务"></a>配置任务</h1><p>任务配置是Gruntfile通过grunt.initConfig方法指定的。这种配置大多会在任务命名的属性下，但可能包含任何任意的数据。只要属性不与任务需要的属性相冲突，它们将被忽略。</p>
+<p>另外，因为这是JavaScript，所以不仅限于JSON。可以在这里使用任何有效的JavaScript。甚至可以编程生成配置，如果有必要的话。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">  concat: &#123;</span><br><span class="line">    // concat task configuration goes here.</span><br><span class="line">  &#125;,</span><br><span class="line">  uglify: &#123;</span><br><span class="line">    // uglify task configuration goes here.</span><br><span class="line">  &#125;,</span><br><span class="line">  // Arbitrary non-task-specific properties.</span><br><span class="line">  my_property: &apos;whatever&apos;,</span><br><span class="line">  my_src_files: [&apos;foo/*.js&apos;, &apos;bar/*.js&apos;],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="配置task和target-添加options"><a href="#配置task和target-添加options" class="headerlink" title="配置task和target,添加options"></a>配置task和target,添加options</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">  concat: &#123;</span><br><span class="line">    options: &#123;</span><br><span class="line">      //task级别的options,会默认执行</span><br><span class="line">    &#125;,</span><br><span class="line">    foo: &#123;</span><br><span class="line">      options: &#123;</span><br><span class="line">        // &quot;foo&quot; 的options，会覆盖task级别的options</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    bar: &#123;</span><br><span class="line">      //没有配置options，将会使用task级别的options</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件输入和输出"><a href="#文件输入和输出" class="headerlink" title="文件输入和输出"></a>文件输入和输出</h2><p>src-dest两个options将用于定义他们</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">grunt.initConfig(&#123;</span><br><span class="line">  concat: &#123;</span><br><span class="line">    foo: &#123;</span><br><span class="line">      src:&apos;/src/a.js&apos;,  //可以使用字符串格式</span><br><span class="line">      dest:&apos;/dist/a.js&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    bar: &#123;</span><br><span class="line">      src:[&apos;/src/a.js&apos;,&apos;/src/aa.js&apos;],  //可以使用数组格式</span><br><span class="line">      dest:&apos;/dist/a.js&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    baz:&#123;</span><br><span class="line">        files:&#123;</span><br><span class="line">            &apos;/dist/a.js&apos;:[&apos;/src/a.js&apos;,&apos;/src/aa.js&apos;] //也可以使用文件对象格式</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    boz:&#123;</span><br><span class="line">        files:[</span><br><span class="line">            &#123;&apos;/dist/a.js&apos;:[&apos;/src/a.js&apos;,&apos;/src/aa.js&apos;]&#125;, //文件对象格式也支持多个src-dest映射</span><br><span class="line">            &#123;&apos;/dist/b.js&apos;:[&apos;/src/b.js&apos;,&apos;/src/bb.js&apos;]&#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Globbing模式"><a href="#Globbing模式" class="headerlink" title="Globbing模式"></a>Globbing模式</h2><p>单独指定所有源文件路径通常是不切实际的，所以Grunt通过内置的node-glob和minimatch库支持文件名扩展（也称为globbing）。</p>
+<p>在文件路径中：</p>
+<ul>
+<li>*匹配任意数量的字符，但不是 /</li>
+<li>?匹配单个字符，但不匹配 /</li>
+<li>**匹配任意数量的字符，包括/只要它是路径部分中唯一的字符</li>
+<li>{}允许逗号分隔的“或”表达式列表</li>
+<li>!在一个模式的开始将忽略这种文件</li>
+</ul>
+<p>所有大多数人需要知道的是，foo/<em>.js将匹配.js在foo/子目录中结束的所有文件，但foo/**/</em>.js将匹配.js在foo/子目录及其所有子目录中结束的所有文件。</p>
+<p>另外，为了简化复杂的通配模式，Grunt允许指定文件路径或Globing模式的数组。模式按顺序处理，!前缀匹配不包括结果集中的匹配文件。结果集是唯一的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">// 匹配单文件:</span><br><span class="line">&#123;src: &apos;foo/this.js&apos;, dest: ...&#125;</span><br><span class="line">// 匹配数组中的文件:</span><br><span class="line">&#123;src: [&apos;foo/this.js&apos;, &apos;foo/that.js&apos;, &apos;foo/the-other.js&apos;], dest: ...&#125;</span><br><span class="line">// 以th开头的js文件:</span><br><span class="line">&#123;src: &apos;foo/th*.js&apos;, dest: ...&#125;</span><br><span class="line"></span><br><span class="line">// 仅a.js和b.js:</span><br><span class="line">&#123;src: &apos;foo/&#123;a,b&#125;*.js&apos;, dest: ...&#125;</span><br><span class="line">// a,b开头的js文件:</span><br><span class="line">&#123;src: [&apos;foo/a*.js&apos;, &apos;foo/b*.js&apos;], dest: ...&#125;</span><br><span class="line"></span><br><span class="line">// 根目录下的所有js文件:</span><br><span class="line">&#123;src: [&apos;foo/*.js&apos;], dest: ...&#125;</span><br><span class="line">// foo目录下的所有js文件，但是bar.js将优先匹配:</span><br><span class="line">&#123;src: [&apos;foo/bar.js&apos;, &apos;foo/*.js&apos;], dest: ...&#125;</span><br><span class="line"></span><br><span class="line">// 除了bar.js外的所有js文件:</span><br><span class="line">&#123;src: [&apos;foo/*.js&apos;, &apos;!foo/bar.js&apos;], dest: ...&#125;</span><br><span class="line">// 左右js文件，但是bar.js最后匹配.</span><br><span class="line">&#123;src: [&apos;foo/*.js&apos;, &apos;!foo/bar.js&apos;, &apos;foo/bar.js&apos;], dest: ...&#125;</span><br><span class="line"></span><br><span class="line">// 使用模板进行匹配:</span><br><span class="line">&#123;src: [&apos;src/&lt;%= basename %&gt;.js&apos;], dest: &apos;build/&lt;%= basename %&gt;.min.js&apos;&#125;</span><br><span class="line">// 模板也可以引入文件列表:</span><br><span class="line">&#123;src: [&apos;foo/*.js&apos;, &apos;&lt;%= jshint.all.src %&gt;&apos;], dest: ...&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><p>使用&lt;% %&gt;分隔符指定的模板将在任务从配置中读取时自动展开。递归地扩展模板直到没有更多的剩余。</p>
+<p>整个配置对象是属性被解析的上下文。另外，grunt它的方法在模板中可用，例如。&lt;%= grunt.template.today(‘yyyy-mm-dd’) %&gt;。</p>
+<ul>
+<li>&lt;%= prop.subprop %&gt;prop.subprop无论类型如何，展开到配置中的值。像这样的模板不仅可以用来引用字符串值，还可以用来引用数组或其他对象。</li>
+<li>&lt;% %&gt;执行任意的内联JavaScript代码。这在控制流程或循环中很有用。</li>
+</ul>
+<h2 id="导入外部数据"><a href="#导入外部数据" class="headerlink" title="导入外部数据"></a>导入外部数据</h2><p>grunt由grunt.file.readJSON和grunt.file.readYAML导入JSON和YAML数据的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkg: grunt.file.readJSON(&apos;package.json&apos;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="创建任务"><a href="#创建任务" class="headerlink" title="创建任务"></a>创建任务</h1><h2 id="注册任务"><a href="#注册任务" class="headerlink" title="注册任务"></a>注册任务</h2><p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(taskName, [description, ] taskList)</span><br></pre></td></tr></table></figure>
+<p>默认任务，将在输入grunt之后直接执行,一下任务将在不指定任何人物的情况下执行jshint,qunit,concat,uglify</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(&apos;default&apos;, [&apos;jshint&apos;, &apos;qunit&apos;, &apos;concat&apos;, &apos;uglify&apos;]);</span><br></pre></td></tr></table></figure>
+<p>target可以以被指定,一下任务将在输入grunt dist命令时执行concat的dist target和uglify的dist target</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(&apos;dist&apos;, [&apos;concat:dist&apos;, &apos;uglify:dist&apos;]);</span><br></pre></td></tr></table></figure>
+<h2 id="多任务"><a href="#多任务" class="headerlink" title="多任务"></a>多任务</h2><p>当多任务运行时，Grunt在Grunt配置中查找同名的属性(task)。多任务可以有多个配置，使用任意命名的“target”定义。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerMultiTask(taskName, [description, ] taskFunction)</span><br></pre></td></tr></table></figure>
+<h2 id="自定义任务"><a href="#自定义任务" class="headerlink" title="自定义任务"></a>自定义任务</h2><p>当一个基本任务运行时，Grunt不会查看配置或者环境 - 它只是运行指定的任务函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grunt.registerTask(taskName, [description, ] taskFunction)</span><br></pre></td></tr></table></figure>
+
+<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><p>官方api地址：<a href="https://gruntjs.com/api/grunt" target="_blank" rel="noopener">https://gruntjs.com/api/grunt</a></p>
+<p>这里不赘述</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>jianjian</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2018/01/14/Grunt%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">http://yoursite.com/2018/01/14/Grunt%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/"># 前端构建工具</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();" target="_blank" rel="noopener">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2018/01/15/JavaScript%E4%B8%8E%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">JavaScript与正则表达式</a>
+            
+            
+            <a class="next" rel="next" href="/2018/01/11/%E8%B5%B0%E8%BF%9Bgulp4%E7%9A%84%E4%B8%96%E7%95%8C/">走进gulp4的世界</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© jianjian | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="jianjian">
+
+
+
+
+
+<title>用一个hello world项目学习webpack | imjianjian</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">imjianjian&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">imjianjian&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/tags">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">用一个hello world项目学习webpack</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">jianjian</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">February 8, 2018&nbsp;&nbsp;18:28:26</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h1><p><a href="https://github.com/imjianjian/webpack-in-hello-world" target="_blank" rel="noopener">项目地址</a></p>
+<p>项目结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- src</span><br><span class="line">    - app</span><br><span class="line">        - App.vue</span><br><span class="line">    - img</span><br><span class="line">        - logo.png</span><br><span class="line">    - style</span><br><span class="line">        - app.scss</span><br><span class="line">    - index.html</span><br><span class="line">    - main.js</span><br></pre></td></tr></table></figure>
+
+<h1 id="webpack基本概念"><a href="#webpack基本概念" class="headerlink" title="webpack基本概念"></a>webpack基本概念</h1><h2 id="entry"><a href="#entry" class="headerlink" title="entry"></a>entry</h2><p>即webpack打包的入口js文件，可以根据项目实际情况配置成但入口或者多入口,webpack会根据入口文件内的引入的文件绘制依赖图，将该模块和模块对应的依赖都打包到一个文件中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//单入口</span><br><span class="line">const config = &#123;</span><br><span class="line">    entry:&apos;a.js&apos;</span><br><span class="line">&#125;</span><br><span class="line">//多入口</span><br><span class="line">const config = &#123;</span><br><span class="line">    entry:&#123;</span><br><span class="line">        a:&apos;a.js&apos;,</span><br><span class="line">        b:[&apos;b1.js&apos;,&apos;b2.js&apos;]  //多个文件打包为一个文件</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="output"><a href="#output" class="headerlink" title="output"></a>output</h2><p>即webpack打包后的输出，即使此时的entry中存在多个入口，也只提供单一的输出配置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//单一入口情况,一下将所有文件都打包到dist/bundle.js里</span><br><span class="line">const config = &#123;</span><br><span class="line">    output:&#123;</span><br><span class="line">        filename:&apos;bundle.js&apos;,</span><br><span class="line">        path:path.join(__dirname,&apos;dist&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//多入口情况</span><br><span class="line">const config =&#123;</span><br><span class="line">    output:&#123;</span><br><span class="line">        filename:&apos;[name].js&apos;,</span><br><span class="line">        path:path.join(__dirname,&apos;dist&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里的输出文件名中可以使用[name],[hash],[chunkhash]等占位，这样输出的文件名中就有带有资源hash值。[hash]是本次打包所有资源的hash值，同义词打包的文件得到的hash是一样的，而[chunkhash]是单个文件打包的hash值，每个文件且每次打包都不相同。还可以使用[hash:8]来取hash值得位数</p>
+<h2 id="Loader"><a href="#Loader" class="headerlink" title="Loader"></a>Loader</h2><p>webpack是一个js bundler，如果需要它对非js得模块，例如typeScript，sass，less，vue等模块进行打包，则需要对应的loader进行转换。而且同一种资源有时需要使用不止一种loader。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">const config =&#123;</span><br><span class="line">    module:&#123;</span><br><span class="line">        rules:[</span><br><span class="line">            &#123;</span><br><span class="line">                test: /\.vue$/, </span><br><span class="line">                use: [&#123;loader: &apos;vue-loader&apos;&#125;]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                test:/\.scss/,</span><br><span class="line">                use:[</span><br><span class="line">                    &#123;loader:&apos;style-loader&apos;&#125;,</span><br><span class="line">                    &#123;</span><br><span class="line">                        loader:&apos;css-loader&apos;,</span><br><span class="line">                            options: &#123;</span><br><span class="line">                                modules: true</span><br><span class="line">                            &#125;</span><br><span class="line">                    &#125;,</span><br><span class="line">                    &#123;loader:&apos;sass-loader&apos;&#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在rules数组中的每一项都是一种模块类型的转换规则，test参数匹配对应后缀的文件，use数组中配置对应使用的loader以及配置loader的其他参数。</p>
+<blockquote>
+<p>官方推荐的<a href="https://doc.webpack-china.org/loaders/" target="_blank" rel="noopener">loader</a></p>
+</blockquote>
+<h2 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h2><p>plugins用于解决其他loader无法做到的事情，比如压缩资源，启动开发服务器等等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;);</span><br><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">const config =&#123;</span><br><span class="line">    plugins:[</span><br><span class="line">        new webpack.optimize.UglifyJsPlugin(),</span><br><span class="line">        new HtmlWebpackPlugin(&#123;</span><br><span class="line">            template:path.join(__dirname,&apos;src/index.html&apos;)</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>plugins数组的每一项就是一个插件</p>
+<blockquote>
+<p>webpack自带的以及推荐使用的<a href="https://doc.webpack-china.org/plugins/" target="_blank" rel="noopener">Plugins</a></p>
+</blockquote>
+<h1 id="webpack配置文件结构"><a href="#webpack配置文件结构" class="headerlink" title="webpack配置文件结构"></a>webpack配置文件结构</h1><p>webpack默认的配置文件名为webpack.config.js，当然也可以自定义其他文件名，只要在webpack –config filename命令中修改filename为当前的配置文件即可。</p>
+<blockquote>
+<p>完整的webpack配置参数可以查看<a href="https://doc.webpack-china.org/configuration/#-" target="_blank" rel="noopener">官方文档</a></p>
+</blockquote>
+<h1 id="开发模式和打包模式-Dev-amp-Build"><a href="#开发模式和打包模式-Dev-amp-Build" class="headerlink" title="开发模式和打包模式(Dev&amp;Build)"></a>开发模式和打包模式(Dev&amp;Build)</h1><p>可以通过命令行向webpack闯入参数，以判断使用开发模式还是打包。</p>
+<p>在package.json中配置npm script：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;build&quot;: &quot;cross-env NODE_ENV=production webpack --config webpack.config.js&quot;,</span><br><span class="line">  &quot;dev&quot;: &quot;cross-env NODE_ENV=develement webpack-dev-server --config webpack.config.js&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>命令行中使用了cross-env用于跨平台地设置及使用环境变量，具体的参照<a href="https://github.com/kentcdodds/cross-env" target="_blank" rel="noopener">官方github说明</a></p>
+</blockquote>
+<p>在build和dev中我们分别向webpack传入了不同的NODE_ENV参数值。在webpacl配置文件中，可以使用process.env.NODE_ENV来的到这个值，以便判断该运行那哪个模式。</p>
+<h2 id="webpack-dev-server"><a href="#webpack-dev-server" class="headerlink" title="webpack-dev-server"></a>webpack-dev-server</h2><p>在webpack中用devServer参数来配置它，在此之前我们需要先判断是否运行在开发模式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var WebpackDevServer = require(&apos;webpack-dev-server&apos;);</span><br><span class="line"></span><br><span class="line">//获得NODE_ENV参数，用于判断处于开发模式还是打包模式</span><br><span class="line">var isDev = process.env.NODE_ENV === &apos;develement&apos;;</span><br><span class="line"></span><br><span class="line">const config = &#123;</span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(isDev)&#123;</span><br><span class="line">    //webpack-dev-server不能使用chunkhash，否则会报错</span><br><span class="line">    config.output.filename =&apos;[name]-[hash].js&apos;;</span><br><span class="line">    config.devtool = &apos;#cheap-module-eval-source-map&apos;;</span><br><span class="line"></span><br><span class="line">    config.plugins.push(</span><br><span class="line">        new webpack.HotModuleReplacementPlugin(), //热更新插件</span><br><span class="line">        new webpack.NoEmitOnErrorsPlugin() //防止错误信息导致webpack退出</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    //启动开发服务器</span><br><span class="line">    config.devServer=&#123;</span><br><span class="line">        contentBase:path.join(__dirname,&apos;dist&apos;),</span><br><span class="line">        compress:true, //启用gzip压缩</span><br><span class="line">        port:8080,</span><br><span class="line">        hot:true, //启用webpack热模块替换特性</span><br><span class="line">        open:true //是否在开始服务器后打开浏览器</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在devServer中配置hot:true并不在代表已经启用了热模块替换，还需要使用webpack.HotModuleReplacementPlugin插件才能生效，hot仅仅是一个开关</p>
+<h1 id="单独打包css文件"><a href="#单独打包css文件" class="headerlink" title="单独打包css文件"></a>单独打包css文件</h1><p>想vue文件中的样式通常会被打包进js文件中，在该组件被加载时同时加载样式。而有一些公共的样式通常会写在单独的文件中，如果我们在多个组件中引用公共样式，那么公共样式会在多个js模块中被打包，这样会增加文件的体积。这是应该将这些公共样式提取出来单独打包。</p>
+<p>这里我们使用<strong>extract-text-webpack-plugin</strong>插件来提取公共样式，所以此时我们的配置文件中就该改为这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var ExtracTextPlugin = require(&apos;extract-text-webpack-plugin&apos;);</span><br><span class="line"></span><br><span class="line">const config =&#123;</span><br><span class="line">    module:&#123;</span><br><span class="line">        rules:[</span><br><span class="line">            &#123;</span><br><span class="line">                test: /\.scss/,</span><br><span class="line">                use: ExtracTextPlugin.extract(&#123;</span><br><span class="line">                    use: [&#123;</span><br><span class="line">                        loader: &apos;css-loader&apos;</span><br><span class="line">                    &#125;, &#123;</span><br><span class="line">                        loader: &apos;sass-loader&apos;</span><br><span class="line">                    &#125;]</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins:[</span><br><span class="line">         new ExtracTextPlugin(&apos;style-[contentHash:8].css&apos;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就能将scss文件单独打包了</p>
+<h1 id="提取公共模块"><a href="#提取公共模块" class="headerlink" title="提取公共模块"></a>提取公共模块</h1><p>同理我们在项目中使用类库，也需要单独打包，以防止重复加载，节省流量。</p>
+<p>这里使用的是webpack自带的插件<strong>CommonsChunkPlugin</strong>，在entry中添加vendor模块，然后在插件中配置单独打包vue。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var config = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        app:path.join(__dirname, &apos;src/main.js&apos;), </span><br><span class="line">        vendor:[&apos;vue&apos;]</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins:[</span><br><span class="line">        new webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">            name:&apos;vendor&apos;</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>jianjian</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2018/02/08/%E7%94%A8%E4%B8%80%E4%B8%AAhello%20world%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0webpack/">http://yoursite.com/2018/02/08/%E7%94%A8%E4%B8%80%E4%B8%AAhello%20world%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0webpack/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/"># 前端构建工具</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();" target="_blank" rel="noopener">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2018/02/26/JavaScript%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/">JavaScript原型和原型链</a>
+            
+            
+            <a class="next" rel="next" href="/2018/01/31/gulp4%E5%A2%9E%E9%87%8F%E7%BC%96%E8%AF%91/">gulp4增量编译</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© jianjian | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
