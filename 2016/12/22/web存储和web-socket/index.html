@@ -1,68 +1,6 @@
-<!DOCTYPE html><html><head><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv=X-UA-Compatible content="ie=edge"><meta name=author content=jianjian><title>web存储和web socket | imjianjian</title><link rel=icon href=/favicon.ico><link rel=stylesheet href=/css/style.css><script src=/js/script.js></script><script src=/js/tocbot.min.js></script></head><body><div class=wrapper><header><nav class=navbar><div class=container><div class="navbar-header header-logo"><a href="/">imjianjian&#39;s Blog</a></div><div class="menu navbar-right"><a class=menu-item href=/archives>Posts</a> <a class=menu-item href=/tags>Tags</a> <input id=switch_default type=checkbox class=switch_default><label for=switch_default class=toggleBtn></label></div></div></nav><nav class=navbar-mobile id=nav-mobile><div class=container><div class=navbar-header><div><a href="/">imjianjian&#39;s Blog</a><a id=mobile-toggle-theme>·&nbsp;Light</a></div><div class=menu-toggle onclick=mobileBtn()>&#9776; Menu</div></div><div class=menu id=mobile-menu><a class=menu-item href=/archives>Posts</a> <a class=menu-item href=/tags>Tags</a></div></div></nav></header><script>
-    var mobileBtn = function f() {
-        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
-        var mobileMenu = document.getElementById("mobile-menu");
-        if(toggleMenu.classList.contains("active")){
-           toggleMenu.classList.remove("active")
-            mobileMenu.classList.remove("active")
-        }else{
-            toggleMenu.classList.add("active")
-            mobileMenu.classList.add("active")
-        }
-    }
-</script><div class=main><div class=container><div class=post-toc><div class=tocbot-list></div><div class=tocbot-list-menu><a class=tocbot-toc-expand onclick=expand_toc()>Expand all</a> <a onclick=go_top()>Back to top</a> <a onclick=go_bottom()>Go to bottom</a></div></div><script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
+<!DOCTYPE html><html lang=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="author" content="jianjian"><title>web存储和web socket | imjianjian</title><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/style.css"><script src="/js/script.js"></script><script src="/js/tocbot.min.js"></script></head><body><div class="wrapper"><header><nav class="navbar"><div class="container"><div class="navbar-header header-logo"><a href="/">imjianjian&#39;s Blog</a></div><div class="menu navbar-right"> <a class="menu-item" href="/archives">Posts</a> <a class="menu-item" href="/tags">Tags</a> <input id="switch_default" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div></nav><nav class="navbar-mobile" id="nav-mobile"><div class="container"><div class="navbar-header"><div> <a href="/">imjianjian&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a></div><div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div></div><div class="menu" id="mobile-menu"> <a class="menu-item" href="/archives">Posts</a> <a class="menu-item" href="/tags">Tags</a></div></div></nav></header><script>var mobileBtn=function(){var e=document.getElementsByClassName("menu-toggle")[0],t=document.getElementById("mobile-menu");e.classList.contains("active")?(e.classList.remove("active"),t.classList.remove("active")):(e.classList.add("active"),t.classList.add("active"))}</script><div class="main"><div class="container"><div class="post-toc"><div class="tocbot-list"></div><div class="tocbot-list-menu"> <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a> <a onclick="go_top()">Back to top</a> <a onclick="go_bottom()">Go to bottom</a></div></div><script>function expand_toc(){var o=document.querySelector(".tocbot-toc-expand");tocbot.init({tocSelector:".tocbot-list",contentSelector:".post-content",headingSelector:"h1, h2, h3, h4, h5",collapseDepth:6,orderedList:!1,scrollSmooth:!0}),o.setAttribute("onclick","collapse_toc()"),o.innerHTML="Collapse all"}function collapse_toc(){var o=document.querySelector(".tocbot-toc-expand");tocbot.init({tocSelector:".tocbot-list",contentSelector:".post-content",headingSelector:"h1, h2, h3, h4, h5",collapseDepth:1,orderedList:!1,scrollSmooth:!0}),o.setAttribute("onclick","expand_toc()"),o.innerHTML="Expand all"}function go_top(){window.scrollTo(0,0)}function go_bottom(){window.scrollTo(0,document.body.scrollHeight)}document.ready(function(){tocbot.init({tocSelector:".tocbot-list",contentSelector:".post-content",headingSelector:"h1, h2, h3, h4, h5",collapseDepth:1,orderedList:!1,scrollSmooth:!0})})</script><article class="post-wrap"><header class="post-header"><h1 class="post-title">web存储和web socket</h1><div class="post-meta"> Author: <a itemprop="author" rel="author" href="/">jianjian</a> <span class="post-time">Date: <a href="#">December 22, 2016&nbsp;&nbsp;17:44:09</a></span></div></header><div class="post-content"><h1 id="一、web存储"><a href="#一、web存储" class="headerlink" title="一、web存储"></a>一、web存储</h1><ol><li><p>对于任何程序来说，能够实现数据存储是必备功能之一，并且在需要的时候能够提供数据。但在过去的Web客户端，没有能够支持数据存储的有效机制，cookie曾用来在客户端存储少量信息，但受其性质所限，cookie只能存储一些短的字符串</p></li><li><p>在HTML5中提供了Web存储API，它是在cookie之上的增强。这个API允许我们在用户的硬盘上存储数据，并在日后使用这些数据。</p></li><li><p>API可以分成两个部分：</p><p> 1）信息必须且只在会话过程中使用—sessionStorage</p><pre><code>当浏览器窗口关闭时，数据全部丢失</code></pre><p> 2）信息必须长期保存且由用户决定时长—localStorage</p><pre><code>关闭浏览器窗口时，数据继续使用
 
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script><article class=post-wrap><header class=post-header><h1 class=post-title>web存储和web socket</h1><div class=post-meta>Author: <a itemprop=author rel=author href="/">jianjian</a> <span class=post-time>Date: <a href=#>December 22, 2016&nbsp;&nbsp;17:44:09</a></span></div></header><div class=post-content><h1 id=一、web存储><a href=#一、web存储 class=headerlink title=一、web存储></a>一、web存储</h1><ol><li><p>对于任何程序来说，能够实现数据存储是必备功能之一，并且在需要的时候能够提供数据。但在过去的Web客户端，没有能够支持数据存储的有效机制，cookie曾用来在客户端存储少量信息，但受其性质所限，cookie只能存储一些短的字符串</p></li><li><p>在HTML5中提供了Web存储API，它是在cookie之上的增强。这个API允许我们在用户的硬盘上存储数据，并在日后使用这些数据。</p></li><li><p>API可以分成两个部分：</p><p>1）信息必须且只在会话过程中使用—sessionStorage</p><pre><code>当浏览器窗口关闭时，数据全部丢失</code></pre><p>2）信息必须长期保存且由用户决定时长—localStorage</p><pre><code>关闭浏览器窗口时，数据继续使用
-
-数据只能由用户删除</code></pre></li></ol><h2 id=1-sessionStorage><a href=#1-sessionStorage class=headerlink title=1.sessionStorage></a>1.sessionStorage</h2><ol><li><p>sessionStorage这部分API就像是会话cookie的替代。</p></li><li><p>cookie以及sessionStorage都是在特定的时间段内保持数据可用。但cookie使用浏览器作为引用，而sessionStorage使用单个窗口作为引用，这就意味着，窗口关闭之后，sessionStorage就不能再使用。</p></li></ol><p>方法：</p><pre><code>1）设置数据
+数据只能由用户删除</code></pre></li></ol><h2 id="1-sessionStorage"><a href="#1-sessionStorage" class="headerlink" title="1.sessionStorage"></a>1.sessionStorage</h2><ol><li><p>sessionStorage这部分API就像是会话cookie的替代。</p></li><li><p>cookie以及sessionStorage都是在特定的时间段内保持数据可用。但cookie使用浏览器作为引用，而sessionStorage使用单个窗口作为引用，这就意味着，窗口关闭之后，sessionStorage就不能再使用。</p></li></ol><p>方法：</p><pre><code>1）设置数据
    setItem(key,value)
    key - 作为存储数据的唯一标识
    value - 存储的数据内容(number/string)
@@ -77,21 +15,21 @@
     clear()
 
 5）根据索引值返回key
-     var key = key(index);</code></pre><p>属性：</p><pre><code>返回当前存储系统的数据个数
-length</code></pre><h2 id=2-localStorage><a href=#2-localStorage class=headerlink title=2.localStorage></a>2.localStorage</h2><ol><li><p>提供的属性和方法与sessionstorage一致</p></li><li><p>storage事件</p><p>实现多个窗口之间共享数据内容</p><p>问题：</p><pre><code>数据安全性低
-目前除Safari浏览器支持该事件，其他浏览器不支持</code></pre></li></ol><h1 id=二、Web-socket><a href=#二、Web-socket class=headerlink title="二、Web socket"></a>二、Web socket</h1><ol><li><p>网络协议</p><p>客户端与服务端进行通信的协议</p><p>HTTP协议 - 目前互联网中最广泛的协议<br>SOCKET协议 - 应用于实时即时通信</p></li><li><p>HTTP协议的问题</p><pre><code>1）无状态
+     var key = key(index);</code></pre><p> 属性：</p><pre><code>返回当前存储系统的数据个数
+length</code></pre><h2 id="2-localStorage"><a href="#2-localStorage" class="headerlink" title="2.localStorage"></a>2.localStorage</h2><ol><li><p>提供的属性和方法与sessionstorage一致</p></li><li><p>storage事件</p><p> 实现多个窗口之间共享数据内容</p><p> 问题：</p><pre><code>数据安全性低
+目前除Safari浏览器支持该事件，其他浏览器不支持</code></pre></li></ol><h1 id="二、Web-socket"><a href="#二、Web-socket" class="headerlink" title="二、Web socket"></a>二、Web socket</h1><ol><li><p>网络协议</p><p> 客户端与服务端进行通信的协议</p><p> HTTP协议 - 目前互联网中最广泛的协议<br> SOCKET协议 - 应用于实时即时通信</p></li><li><p>HTTP协议的问题</p><pre><code>1）无状态
 
   本次客户端的请求,服务器端不知道客户端的上次请求
 
 2）短连接
 
-  指通讯双方有数据交互时，就建立一个连接，数据发送完成后，则断开此连接，即每次连接只完成一项业务的发送。</code></pre></li><li><p>web Socket</p><pre><code>实现了用HTTP不容易实现的服务器端的数据推送等智能通讯技术</code></pre></li><li><p>Web Socket的特点</p><p>1）这个连接是实时的，也是永久的<br>2）服务端可以主动推送消息<br>3）服务端不需要轮询客户端的请求<br>4）服务器端与客户端之间通信无需重新建立连接</p></li><li><p>使用WorkerMan,设置socket客户端</p><p>1）设置php环境变量</p><p>2）下载并解压workerMan</p><pre><code>http://www.workerman.net/workerman
+  指通讯双方有数据交互时，就建立一个连接，数据发送完成后，则断开此连接，即每次连接只完成一项业务的发送。</code></pre></li><li><p>web Socket</p><pre><code>实现了用HTTP不容易实现的服务器端的数据推送等智能通讯技术</code></pre></li><li><p>Web Socket的特点</p><p>1）这个连接是实时的，也是永久的<br>2）服务端可以主动推送消息<br>3）服务端不需要轮询客户端的请求<br>4）服务器端与客户端之间通信无需重新建立连接</p></li><li><p>使用WorkerMan,设置socket客户端</p><p> 1）设置php环境变量</p><p> 2）下载并解压workerMan</p><pre><code>http://www.workerman.net/workerman
 
 workerMan学习文档
 
-http://doc3.workerman.net/getting-started/simple-example.html</code></pre><p>3）在任意位置创建http_test.php文件，并将课件中的start.text文件中内容复制到该文件中（位置任意，能引用到Workerman文件中的Autoloader.php即可</p><p>4) 运行上建的文件，启动workerMan</p><pre><code>执行workerMan</code></pre></li></ol><h1 id=三、Web-socket的使用><a href=#三、Web-socket的使用 class=headerlink title="三、Web socket的使用"></a>三、Web socket的使用</h1><ol><li><p>调用 WebSocket 对象的构造器来建立与服务器之间的通信连接</p><p>var webSocket = new WebSocket (“ws://127.0.0.1: 8005/socket”) ;</p><p>请求地址(url)不能再是http://开头,Web Sockets的请求头(url的开头)</p><pre><code>ws:// - Web Socket的缩写
+http://doc3.workerman.net/getting-started/simple-example.html</code></pre><p> 3）在任意位置创建http_test.php文件，并将课件中的start.text文件中内容复制到该文件中（位置任意，能引用到Workerman文件中的Autoloader.php即可</p><p> 4) 运行上建的文件，启动workerMan</p><pre><code>执行workerMan</code></pre></li></ol><h1 id="三、Web-socket的使用"><a href="#三、Web-socket的使用" class="headerlink" title="三、Web socket的使用"></a>三、Web socket的使用</h1><ol><li><p>调用 WebSocket 对象的构造器来建立与服务器之间的通信连接</p><p> var webSocket = new WebSocket (“ws://127.0.0.1: 8005/socket”) ;</p><p> 请求地址(url)不能再是http://开头,Web Sockets的请求头(url的开头)</p><pre><code>ws:// - Web Socket的缩写
 wss:// - 表示加密协议</code></pre></li><li><p>使用 WebSocket 对象的 send() 方法对服务器发送数据</p><pre><code>webSocket.send (“data”);
 
-send() 方法只能发送文本数据。,使用JSON对象把任何JavaScript,对象转换称文本数据后进行发送。 </code></pre></li><li><p>通过WebSocket对象的close() 方法来关闭socket，切断通信连接：</p><pre><code>webSocket.close( ) ;</code></pre></li><li><p>Web Socket事件</p><p>1）通过获取 onmessage事件来接收服务器传来的数据：</p><pre><code>webSocket.onmessage = function( event ){
+send() 方法只能发送文本数据。,使用JSON对象把任何JavaScript,对象转换称文本数据后进行发送。 </code></pre></li><li><p>通过WebSocket对象的close() 方法来关闭socket，切断通信连接：</p><pre><code>webSocket.close( ) ;</code></pre></li><li><p>Web Socket事件</p><p> 1）通过获取 onmessage事件来接收服务器传来的数据：</p><pre><code>webSocket.onmessage = function( event ){
   var data = event.data ;
-}</code></pre><p>2）通过获取 onopen 事件来监听 socket 的打开事件：</p><pre><code>webSocket.onopen = function( event ){}</code></pre><p>3）通过获取onclose事件来监听socket 的关闭事件：</p><pre><code>webSocket.onclose = function( event ){}</code></pre><p>4）通过onerror事件，监听客户端与服务器端连接出错</p><pre><code>webSocket.onerror = function( event ){}</code></pre></li></ol></div><section class=post-copyright><p class=copyright-item><span>Author:</span> <span>jianjian</span></p><p class=copyright-item><span>Permalink:</span> <span><a href="http://yoursite.com/2016/12/22/web%E5%AD%98%E5%82%A8%E5%92%8Cweb-socket/">http://yoursite.com/2016/12/22/web%E5%AD%98%E5%82%A8%E5%92%8Cweb-socket/</a></span></p><p class=copyright-item><span>License:</span> <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target=_blank rel=noopener>CC-BY-NC-4.0</a> LICENSE</span></p><p class=copyright-item><span>Slogan:</span> <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span></p></section><section class=post-tags><div><span>Tag(s):</span> <span class=tag><a href="/tags/web%E5%89%8D%E7%AB%AF/"># web前端</a></span></div><div><a href=javascript:window.history.back(); target=_blank rel=noopener>back</a> <span>·</span> <a href="/">home</a></div></section><section class=post-nav><a class=prev rel=prev href="/2016/12/27/ajax%E5%9F%BA%E7%A1%80%E5%92%8Cxml%E5%9F%BA%E7%A1%80/">ajax基础和xml基础</a> <a class=next rel=next href="/2016/12/21/Web%20Worker/">Web Worker</a></section></article></div></div><footer id=footer class=footer><div class=copyright><span>© jianjian | Powered by <a href=https://hexo.io target=_blank>Hexo</a> & <a href=https://github.com/Siricee/hexo-theme-Chic target=_blank>Chic</a></span></div></footer></div></body></html>
+}</code></pre><p> 2）通过获取 onopen 事件来监听 socket 的打开事件：</p><pre><code>webSocket.onopen = function( event ){}</code></pre><p> 3）通过获取onclose事件来监听socket 的关闭事件：</p><pre><code>webSocket.onclose = function( event ){}</code></pre><p> 4）通过onerror事件，监听客户端与服务器端连接出错</p><pre><code>webSocket.onerror = function( event ){}</code></pre></li></ol></div><section class="post-copyright"><p class="copyright-item"> <span>Author:</span> <span>jianjian</span></p><p class="copyright-item"> <span>Permalink:</span> <span><a href="http://yoursite.com/2016/12/22/web%E5%AD%98%E5%82%A8%E5%92%8Cweb-socket/">http://yoursite.com/2016/12/22/web%E5%AD%98%E5%82%A8%E5%92%8Cweb-socket/</a></span></p><p class="copyright-item"> <span>License:</span> <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span></p><p class="copyright-item"> <span>Slogan:</span> <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span></p></section><section class="post-tags"><div> <span>Tag(s):</span> <span class="tag"><a href="/tags/web%E5%89%8D%E7%AB%AF/"># web前端</a></span></div><div> <a href="javascript:window.history.back();" target="_blank" rel="noopener">back</a> <span>·</span> <a href="/">home</a></div></section><section class="post-nav"> <a class="prev" rel="prev" href="/2016/12/27/ajax%E5%9F%BA%E7%A1%80%E5%92%8Cxml%E5%9F%BA%E7%A1%80/">ajax基础和xml基础</a> <a class="next" rel="next" href="/2016/12/21/Web%20Worker/">Web Worker</a></section></article></div></div><footer id="footer" class="footer"><div class="copyright"> <span>© jianjian | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span></div></footer></div></body></html>

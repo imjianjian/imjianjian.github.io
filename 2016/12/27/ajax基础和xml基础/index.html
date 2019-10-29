@@ -1,73 +1,11 @@
-<!DOCTYPE html><html><head><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv=X-UA-Compatible content="ie=edge"><meta name=author content=jianjian><title>ajax基础和xml基础 | imjianjian</title><link rel=icon href=/favicon.ico><link rel=stylesheet href=/css/style.css><script src=/js/script.js></script><script src=/js/tocbot.min.js></script></head><body><div class=wrapper><header><nav class=navbar><div class=container><div class="navbar-header header-logo"><a href="/">imjianjian&#39;s Blog</a></div><div class="menu navbar-right"><a class=menu-item href=/archives>Posts</a> <a class=menu-item href=/tags>Tags</a> <input id=switch_default type=checkbox class=switch_default><label for=switch_default class=toggleBtn></label></div></div></nav><nav class=navbar-mobile id=nav-mobile><div class=container><div class=navbar-header><div><a href="/">imjianjian&#39;s Blog</a><a id=mobile-toggle-theme>·&nbsp;Light</a></div><div class=menu-toggle onclick=mobileBtn()>&#9776; Menu</div></div><div class=menu id=mobile-menu><a class=menu-item href=/archives>Posts</a> <a class=menu-item href=/tags>Tags</a></div></div></nav></header><script>
-    var mobileBtn = function f() {
-        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
-        var mobileMenu = document.getElementById("mobile-menu");
-        if(toggleMenu.classList.contains("active")){
-           toggleMenu.classList.remove("active")
-            mobileMenu.classList.remove("active")
-        }else{
-            toggleMenu.classList.add("active")
-            mobileMenu.classList.add("active")
-        }
-    }
-</script><div class=main><div class=container><div class=post-toc><div class=tocbot-list></div><div class=tocbot-list-menu><a class=tocbot-toc-expand onclick=expand_toc()>Expand all</a> <a onclick=go_top()>Back to top</a> <a onclick=go_bottom()>Go to bottom</a></div></div><script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script><article class=post-wrap><header class=post-header><h1 class=post-title>ajax基础和xml基础</h1><div class=post-meta>Author: <a itemprop=author rel=author href="/">jianjian</a> <span class=post-time>Date: <a href=#>December 27, 2016&nbsp;&nbsp;17:32:51</a></span></div></header><div class=post-content><h1 id=AJAX><a href=#AJAX class=headerlink title=AJAX></a>AJAX</h1><h2 id=一、同步交互与异步交互><a href=#一、同步交互与异步交互 class=headerlink title=一、同步交互与异步交互></a>一、同步交互与异步交互</h2><ol><li><p>客户端想服务器端发送请求，直到服务器端进行响应，这个过程中，用户是不能做任何其他事情的(等)</p></li><li><p>客户端想服务端发送请求，直到服务端进行响应，这个过程中，用户是可以做其他事情的(不用等)</p></li></ol><h2 id=二、AJAX><a href=#二、AJAX class=headerlink title=二、AJAX></a>二、AJAX</h2><ol><li><p>asynchronous javascript and xml,直译中文-javascript和xml的异步</p></li><li><p>AJAX是一种用来改善用户体验的技术，其实质是，使用XMLHttpRequest对象异步地向服务器发请求</p></li><li><p>服务器返回部分数据，而不是一个完整的页面，以页面无刷新的效果更改页面中的局部内容</p></li><li><p>Ajax的核心对象</p><p>XMLHttpRequerst对象</p></li><li><p>获取XMLHttpRequest对象</p><p>function getXhr() {</p><pre><code>var xhr = null;
+<!DOCTYPE html><html lang=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="author" content="jianjian"><title>ajax基础和xml基础 | imjianjian</title><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/style.css"><script src="/js/script.js"></script><script src="/js/tocbot.min.js"></script></head><body><div class="wrapper"><header><nav class="navbar"><div class="container"><div class="navbar-header header-logo"><a href="/">imjianjian&#39;s Blog</a></div><div class="menu navbar-right"> <a class="menu-item" href="/archives">Posts</a> <a class="menu-item" href="/tags">Tags</a> <input id="switch_default" type="checkbox" class="switch_default"><label for="switch_default" class="toggleBtn"></label></div></div></nav><nav class="navbar-mobile" id="nav-mobile"><div class="container"><div class="navbar-header"><div> <a href="/">imjianjian&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a></div><div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div></div><div class="menu" id="mobile-menu"> <a class="menu-item" href="/archives">Posts</a> <a class="menu-item" href="/tags">Tags</a></div></div></nav></header><script>var mobileBtn=function(){var e=document.getElementsByClassName("menu-toggle")[0],t=document.getElementById("mobile-menu");e.classList.contains("active")?(e.classList.remove("active"),t.classList.remove("active")):(e.classList.add("active"),t.classList.add("active"))}</script><div class="main"><div class="container"><div class="post-toc"><div class="tocbot-list"></div><div class="tocbot-list-menu"> <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a> <a onclick="go_top()">Back to top</a> <a onclick="go_bottom()">Go to bottom</a></div></div><script>function expand_toc(){var o=document.querySelector(".tocbot-toc-expand");tocbot.init({tocSelector:".tocbot-list",contentSelector:".post-content",headingSelector:"h1, h2, h3, h4, h5",collapseDepth:6,orderedList:!1,scrollSmooth:!0}),o.setAttribute("onclick","collapse_toc()"),o.innerHTML="Collapse all"}function collapse_toc(){var o=document.querySelector(".tocbot-toc-expand");tocbot.init({tocSelector:".tocbot-list",contentSelector:".post-content",headingSelector:"h1, h2, h3, h4, h5",collapseDepth:1,orderedList:!1,scrollSmooth:!0}),o.setAttribute("onclick","expand_toc()"),o.innerHTML="Expand all"}function go_top(){window.scrollTo(0,0)}function go_bottom(){window.scrollTo(0,document.body.scrollHeight)}document.ready(function(){tocbot.init({tocSelector:".tocbot-list",contentSelector:".post-content",headingSelector:"h1, h2, h3, h4, h5",collapseDepth:1,orderedList:!1,scrollSmooth:!0})})</script><article class="post-wrap"><header class="post-header"><h1 class="post-title">ajax基础和xml基础</h1><div class="post-meta"> Author: <a itemprop="author" rel="author" href="/">jianjian</a> <span class="post-time">Date: <a href="#">December 27, 2016&nbsp;&nbsp;17:32:51</a></span></div></header><div class="post-content"><h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><h2 id="一、同步交互与异步交互"><a href="#一、同步交互与异步交互" class="headerlink" title="一、同步交互与异步交互"></a>一、同步交互与异步交互</h2><ol><li><p>客户端想服务器端发送请求，直到服务器端进行响应，这个过程中，用户是不能做任何其他事情的(等)</p></li><li><p>客户端想服务端发送请求，直到服务端进行响应，这个过程中，用户是可以做其他事情的(不用等)</p></li></ol><h2 id="二、AJAX"><a href="#二、AJAX" class="headerlink" title="二、AJAX"></a>二、AJAX</h2><ol><li><p>asynchronous javascript and xml,直译中文-javascript和xml的异步</p></li><li><p>AJAX是一种用来改善用户体验的技术，其实质是，使用XMLHttpRequest对象异步地向服务器发请求</p></li><li><p>服务器返回部分数据，而不是一个完整的页面，以页面无刷新的效果更改页面中的局部内容</p></li><li><p>Ajax的核心对象</p><p> XMLHttpRequerst对象</p></li><li><p>获取XMLHttpRequest对象</p><p> function getXhr() {</p><pre><code>var xhr = null;
 if (window.XMLHttpRequest) {
   //除IE外的其他浏览器
   xhr = new XMLHttpRequest();
 } else {
   xhr = new ActiveXObject(&quot;Microsoft.XMLHttp&quot;);
 }
-  return xhr;</code></pre><p>}</p></li><li><p>属性</p><pre><code>1) readyState 请求状态
+  return xhr;</code></pre><p> }</p></li><li><p>属性</p><pre><code>1) readyState 请求状态
 
    0 尚未初始化
    1正在发送请求
@@ -85,14 +23,14 @@ if (window.XMLHttpRequest) {
 
 3) responseText 服务器返回的文本
 
-4) responseXML 服务器返回的xml，可以当做DOM处理</code></pre></li><li><p>方法</p><p>open(method,url) - 与服务端建立连接</p><p>send() - 向服务器端发送请求</p><p>abort() - 取消请求</p><p>getAllResponseHeaders() - 得到响应的所有http头</p><p>getResponseHeader() - 获取指定的http头</p><p>setRequestHeader() - 指定请求的Http头</p></li><li><p>事件</p><p>onreadystatechange事件 - 作用 - 监听服务端的通信状态改变</p><p>当Ajax对象的readyState的值发生了改变，比如，从0变成了1，就会产生readystatechange事件</p></li></ol><h2 id=三、实现ajax的异步交互步骤><a href=#三、实现ajax的异步交互步骤 class=headerlink title=三、实现ajax的异步交互步骤></a>三、实现ajax的异步交互步骤</h2><ol><li><p>创建XMLHttpRequest核心对象<br>固定写法-独立编写</p></li><li><p>与服务区建立连接<br>使用XMLHttpRequest对象的open(method,url)</p></li><li><p>向服务器发送请求<br>使用XMLRequest对象的send()方法<br>请求参数的格式 - key=value</p></li><li><p>接受服务器响应的数据</p><p>使用XMLHttpRequest对象的readystatechange事件监听服务器端的通信状态</p><p>使用XMLHttpRequest对象的readyState属性，判断服务器端当前状态(0-4)</p><p>使用XMLHttpRequest对象的statue属性，判断服务器端的状态码(200)</p><p>使用XMLHttp对象的responseText属性，接受服务器端的响应数据</p><p>注意：get与post方式</p><p>get请求方式</p><p>send()方法不起作用，但是不能被省略<br>xhr.send(null) 请求参数，添加到url?key=value</p><p>post请求方式</p><p>必须要在send()方法调用之前，使用setRequestHeader()方法设置请求头，参数为key-value</p><p>xhr.setRequestHeader(“Content-Type”,”application/x-www-form-urlencoded”);</p></li></ol><h1 id=xml><a href=#xml class=headerlink title=xml></a>xml</h1><h2 id=一、接收服务器端的响应数据><a href=#一、接收服务器端的响应数据 class=headerlink title=一、接收服务器端的响应数据></a>一、接收服务器端的响应数据</h2><ol><li><p>使用XMLHttpRequest核心对象的responseText属性</p><p>该属性只能接受文本(HTML)格式</p><p>问题：<br>解析过程比较复杂，而且在拼串或拆串过程容易出错</p></li><li><p>XML格式的数据</p></li><li><p>json格式的数据</p></li></ol><h2 id=二、XML><a href=#二、XML class=headerlink title=二、XML></a>二、XML</h2><ol><li><p>HTML/XHTML/DHTML/XML</p><p>HTML: 网页文档<br>XHTML:更严格的网页文档<br>DHTML:DOM|DOM<br>XML: 可扩展的标记语言，可用于配置文件|数据格式</p></li><li><p>XML的文件为.xml</p></li><li><p>XML的定义方式与HTML非常相似</p><p>HTML的元素都是预定义好的<br>XML允许自定义元素</p></li><li><p>XML版本</p><p>1.0版本 1.1版本，几乎没人使用</p></li><li><p>XML作用</p><p>作为数据格式-存储数据的地方</p></li><li><p>XML语法</p><p>1）声明</p><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+4) responseXML 服务器返回的xml，可以当做DOM处理</code></pre></li><li><p>方法</p><p> open(method,url) - 与服务端建立连接</p><p> send() - 向服务器端发送请求</p><p> abort() - 取消请求</p><p> getAllResponseHeaders() - 得到响应的所有http头</p><p> getResponseHeader() - 获取指定的http头</p><p> setRequestHeader() - 指定请求的Http头</p></li><li><p>事件</p><p> onreadystatechange事件 - 作用 - 监听服务端的通信状态改变</p><p> 当Ajax对象的readyState的值发生了改变，比如，从0变成了1，就会产生readystatechange事件</p></li></ol><h2 id="三、实现ajax的异步交互步骤"><a href="#三、实现ajax的异步交互步骤" class="headerlink" title="三、实现ajax的异步交互步骤"></a>三、实现ajax的异步交互步骤</h2><ol><li><p>创建XMLHttpRequest核心对象<br>固定写法-独立编写</p></li><li><p>与服务区建立连接<br>使用XMLHttpRequest对象的open(method,url)</p></li><li><p>向服务器发送请求<br>使用XMLRequest对象的send()方法<br>请求参数的格式 - key=value</p></li><li><p>接受服务器响应的数据</p><p>使用XMLHttpRequest对象的readystatechange事件监听服务器端的通信状态</p><p>使用XMLHttpRequest对象的readyState属性，判断服务器端当前状态(0-4)</p><p>使用XMLHttpRequest对象的statue属性，判断服务器端的状态码(200)</p><p>使用XMLHttp对象的responseText属性，接受服务器端的响应数据</p><p>注意：get与post方式</p><p> get请求方式</p><p> send()方法不起作用，但是不能被省略<br> xhr.send(null) 请求参数，添加到url?key=value</p><p> post请求方式</p><p> 必须要在send()方法调用之前，使用setRequestHeader()方法设置请求头，参数为key-value</p><p> xhr.setRequestHeader(“Content-Type”,”application/x-www-form-urlencoded”);</p></li></ol><h1 id="xml"><a href="#xml" class="headerlink" title="xml"></a>xml</h1><h2 id="一、接收服务器端的响应数据"><a href="#一、接收服务器端的响应数据" class="headerlink" title="一、接收服务器端的响应数据"></a>一、接收服务器端的响应数据</h2><ol><li><p>使用XMLHttpRequest核心对象的responseText属性</p><p>该属性只能接受文本(HTML)格式</p><p>问题：<br> 解析过程比较复杂，而且在拼串或拆串过程容易出错</p></li><li><p>XML格式的数据</p></li><li><p>json格式的数据</p></li></ol><h2 id="二、XML"><a href="#二、XML" class="headerlink" title="二、XML"></a>二、XML</h2><ol><li><p>HTML/XHTML/DHTML/XML</p><p>HTML: 网页文档<br>XHTML:更严格的网页文档<br>DHTML:DOM|DOM<br>XML: 可扩展的标记语言，可用于配置文件|数据格式</p></li><li><p>XML的文件为.xml</p></li><li><p>XML的定义方式与HTML非常相似</p><p> HTML的元素都是预定义好的<br> XML允许自定义元素</p></li><li><p>XML版本</p><p> 1.0版本 1.1版本，几乎没人使用</p></li><li><p>XML作用</p><p> 作为数据格式-存储数据的地方</p></li><li><p>XML语法</p><p> 1）声明</p><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
 
 version-设置XML文件的版本
 encoding-设置XML文件的编码
 
-声明必须出现在0行0列上</code></pre><p>2）定义元素</p><pre><code>根元素，必须是双标签，只能定义一个
+声明必须出现在0行0列上</code></pre><p> 2）定义元素</p><pre><code>根元素，必须是双标签，只能定义一个
 
-定义元素，元素名可以自定义，既可以双标签也可以是单标签</code></pre><p>练习：使用XML定义省份和城市信息</p></li></ol><h2 id=三、DOM解析XML字符串><a href=#三、DOM解析XML字符串 class=headerlink title=三、DOM解析XML字符串></a>三、DOM解析XML字符串</h2><ol><li><p>创建DOM解析XML的解析器，解析器解析XML字符串</p><pre><code>IE浏览器
+定义元素，元素名可以自定义，既可以双标签也可以是单标签</code></pre><p> 练习：使用XML定义省份和城市信息</p></li></ol><h2 id="三、DOM解析XML字符串"><a href="#三、DOM解析XML字符串" class="headerlink" title="三、DOM解析XML字符串"></a>三、DOM解析XML字符串</h2><ol><li><p>创建DOM解析XML的解析器，解析器解析XML字符串</p><pre><code>IE浏览器
 
 var parser = new ActiveXObject(&quot;Microsoft.XMLDOM&quot;);
 
@@ -104,4 +42,4 @@ xmlDoc = parser.loadXML(xmlFile);
 
 var parser = new DOMParser();
 
-var xmlDoc = parser.parseFromString(xmlFile,&quot;application/xml&quot;);</code></pre></li><li><p>解析XML元素与解析HTML元素一致</p><p>获取元素最常用的是getElementsByTagName很少使用ById和ByName</p><p>PS：<br>浏览器不允许读取外部的XML文件<br>浏览器解析符合XML格式的字符串</p></li></ol></div><section class=post-copyright><p class=copyright-item><span>Author:</span> <span>jianjian</span></p><p class=copyright-item><span>Permalink:</span> <span><a href="http://yoursite.com/2016/12/27/ajax%E5%9F%BA%E7%A1%80%E5%92%8Cxml%E5%9F%BA%E7%A1%80/">http://yoursite.com/2016/12/27/ajax%E5%9F%BA%E7%A1%80%E5%92%8Cxml%E5%9F%BA%E7%A1%80/</a></span></p><p class=copyright-item><span>License:</span> <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target=_blank rel=noopener>CC-BY-NC-4.0</a> LICENSE</span></p><p class=copyright-item><span>Slogan:</span> <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span></p></section><section class=post-tags><div><span>Tag(s):</span> <span class=tag><a href="/tags/web%E5%89%8D%E7%AB%AF/"># web前端</a></span></div><div><a href=javascript:window.history.back(); target=_blank rel=noopener>back</a> <span>·</span> <a href="/">home</a></div></section><section class=post-nav><a class=prev rel=prev href="/2016/12/29/ajax%E4%B8%AD%E7%9A%84xml%E5%92%8Cjson/">ajax中的xml和json</a> <a class=next rel=next href="/2016/12/22/web%E5%AD%98%E5%82%A8%E5%92%8Cweb-socket/">web存储和web socket</a></section></article></div></div><footer id=footer class=footer><div class=copyright><span>© jianjian | Powered by <a href=https://hexo.io target=_blank>Hexo</a> & <a href=https://github.com/Siricee/hexo-theme-Chic target=_blank>Chic</a></span></div></footer></div></body></html>
+var xmlDoc = parser.parseFromString(xmlFile,&quot;application/xml&quot;);</code></pre></li><li><p>解析XML元素与解析HTML元素一致</p><p> 获取元素最常用的是getElementsByTagName很少使用ById和ByName</p><p>PS：<br>浏览器不允许读取外部的XML文件<br>浏览器解析符合XML格式的字符串</p></li></ol></div><section class="post-copyright"><p class="copyright-item"> <span>Author:</span> <span>jianjian</span></p><p class="copyright-item"> <span>Permalink:</span> <span><a href="http://yoursite.com/2016/12/27/ajax%E5%9F%BA%E7%A1%80%E5%92%8Cxml%E5%9F%BA%E7%A1%80/">http://yoursite.com/2016/12/27/ajax%E5%9F%BA%E7%A1%80%E5%92%8Cxml%E5%9F%BA%E7%A1%80/</a></span></p><p class="copyright-item"> <span>License:</span> <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span></p><p class="copyright-item"> <span>Slogan:</span> <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span></p></section><section class="post-tags"><div> <span>Tag(s):</span> <span class="tag"><a href="/tags/web%E5%89%8D%E7%AB%AF/"># web前端</a></span></div><div> <a href="javascript:window.history.back();" target="_blank" rel="noopener">back</a> <span>·</span> <a href="/">home</a></div></section><section class="post-nav"> <a class="prev" rel="prev" href="/2016/12/29/ajax%E4%B8%AD%E7%9A%84xml%E5%92%8Cjson/">ajax中的xml和json</a> <a class="next" rel="next" href="/2016/12/22/web%E5%AD%98%E5%82%A8%E5%92%8Cweb-socket/">web存储和web socket</a></section></article></div></div><footer id="footer" class="footer"><div class="copyright"> <span>© jianjian | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span></div></footer></div></body></html>
