@@ -1,89 +1,4 @@
-<!DOCTYPE html>
-<html lang="">
-<head>
-    <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <meta name="author" content="jianjian">
-
-
-
-
-
-<title>响应式布局学习 | imjianjian</title>
-
-
-
-    <link rel="icon" href="/favicon.ico">
-
-
-
-
-    <!-- stylesheets list from _config.yml -->
-    
-    <link rel="stylesheet" href="/css/style.css">
-    
-
-
-
-    <!-- scripts list from _config.yml -->
-    
-    <script src="/js/script.js"></script>
-    
-    <script src="/js/tocbot.min.js"></script>
-    
-
-
-
-    
-    
-        
-    
-
-
-</head>
-<body>
-    <div class="wrapper">
-        <header>
-    <nav class="navbar">
-        <div class="container">
-            <div class="navbar-header header-logo"><a href="/">imjianjian&#39;s Blog</a></div>
-            <div class="menu navbar-right">
-                
-                    <a class="menu-item" href="/archives">Posts</a>
-                
-                    <a class="menu-item" href="/tags">Tags</a>
-                
-                <input id="switch_default" type="checkbox" class="switch_default">
-                <label for="switch_default" class="toggleBtn"></label>
-            </div>
-
-        </div>
-    </nav>
-
-    
-    <nav class="navbar-mobile" id="nav-mobile">
-        <div class="container">
-            <div class="navbar-header">
-                <div>
-                    <a href="/">imjianjian&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
-                </div>
-                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
-            </div>
-            <div class="menu" id="mobile-menu">
-                
-                    <a class="menu-item" href="/archives">Posts</a>
-                
-                    <a class="menu-item" href="/tags">Tags</a>
-                
-            </div>
-        </div>
-    </nav>
-
-</header>
-<script>
+<!DOCTYPE html><html><head><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv=X-UA-Compatible content="ie=edge"><meta name=author content=jianjian><title>响应式布局学习 | imjianjian</title><link rel=icon href=/favicon.ico><link rel=stylesheet href=/css/style.css><script src=/js/script.js></script><script src=/js/tocbot.min.js></script></head><body><div class=wrapper><header><nav class=navbar><div class=container><div class="navbar-header header-logo"><a href="/">imjianjian&#39;s Blog</a></div><div class="menu navbar-right"><a class=menu-item href=/archives>Posts</a> <a class=menu-item href=/tags>Tags</a> <input id=switch_default type=checkbox class=switch_default><label for=switch_default class=toggleBtn></label></div></div></nav><nav class=navbar-mobile id=nav-mobile><div class=container><div class=navbar-header><div><a href="/">imjianjian&#39;s Blog</a><a id=mobile-toggle-theme>·&nbsp;Light</a></div><div class=menu-toggle onclick=mobileBtn()>&#9776; Menu</div></div><div class=menu id=mobile-menu><a class=menu-item href=/archives>Posts</a> <a class=menu-item href=/tags>Tags</a></div></div></nav></header><script>
     var mobileBtn = function f() {
         var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
         var mobileMenu = document.getElementById("mobile-menu");
@@ -95,22 +10,7 @@
             mobileMenu.classList.add("active")
         }
     }
-</script>
-        <div class="main">
-            <div class="container">
-    
-    
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
+</script><div class=main><div class=container><div class=post-toc><div class=tocbot-list></div><div class=tocbot-list-menu><a class=tocbot-toc-expand onclick=expand_toc()>Expand all</a> <a onclick=go_top()>Back to top</a> <a onclick=go_bottom()>Go to bottom</a></div></div><script>
     document.ready(
         function () {
             tocbot.init({
@@ -160,48 +60,10 @@
         window.scrollTo(0, document.body.scrollHeight);
     }
 
-</script>
-    
-
-    
-    <article class="post-wrap">
-        <header class="post-header">
-            <h1 class="post-title">响应式布局学习</h1>
-            
-                <div class="post-meta">
-                    
-                        Author: <a itemprop="author" rel="author" href="/">jianjian</a>
-                    
-
-                    
-                        <span class="post-time">
-                        Date: <a href="#">February 16, 2017&nbsp;&nbsp;19:57:51</a>
-                        </span>
-                    
-                    
-                </div>
-            
-        </header>
-
-        <div class="post-content">
-            <h1 id="一、响应式网页"><a href="#一、响应式网页" class="headerlink" title="一、响应式网页"></a>一、响应式网页</h1><ol>
-<li><p>一个页面，可以根据浏览设备的不同，以及特性的不同，而自动改变布局、大小等</p>
-</li>
-<li><p>响应式网页的三个特征</p>
-<p>1）流式网格布局(fluid)<br>2）可伸缩的图片和字体<br>3）CSS3 Media Query - 根据客户端浏览设备的特性，有选择的执行部分css</p>
-</li>
-<li><p>优缺点</p>
-<p>  优点：可以自动适配PC/PAD/PHONE浏览器屏幕</p>
-<p>  缺点：代码变复杂，需要考虑更多兼容性，并不适合内容非常多的网页</p>
-</li>
-</ol>
-<h1 id="二、如何测试响应式网页"><a href="#二、如何测试响应式网页" class="headerlink" title="二、如何测试响应式网页"></a>二、如何测试响应式网页</h1><p>   1、真实物理设备</p>
-<pre><code>优点：测试结构真实可靠
-不足：测试任务量太大</code></pre><p>   2、使用第三方软件</p>
-<pre><code>优点：无需添置真实设备
-不足：软件测试效率低，部分功能无法测试，测试结果有待进一步验证</code></pre><p>   3、使用浏览器模拟器测试</p>
-<pre><code>优点：测试功能强大，简单易用，
-不足：测试结果有待进一步验证</code></pre><h1 id="三、响应式布局必须清楚的两个概念"><a href="#三、响应式布局必须清楚的两个概念" class="headerlink" title="三、响应式布局必须清楚的两个概念"></a>三、响应式布局必须清楚的两个概念</h1><pre><code>1. viewport - 视口
+</script><article class=post-wrap><header class=post-header><h1 class=post-title>响应式布局学习</h1><div class=post-meta>Author: <a itemprop=author rel=author href="/">jianjian</a> <span class=post-time>Date: <a href=#>February 16, 2017&nbsp;&nbsp;19:57:51</a></span></div></header><div class=post-content><h1 id=一、响应式网页><a href=#一、响应式网页 class=headerlink title=一、响应式网页></a>一、响应式网页</h1><ol><li><p>一个页面，可以根据浏览设备的不同，以及特性的不同，而自动改变布局、大小等</p></li><li><p>响应式网页的三个特征</p><p>1）流式网格布局(fluid)<br>2）可伸缩的图片和字体<br>3）CSS3 Media Query - 根据客户端浏览设备的特性，有选择的执行部分css</p></li><li><p>优缺点</p><p>优点：可以自动适配PC/PAD/PHONE浏览器屏幕</p><p>缺点：代码变复杂，需要考虑更多兼容性，并不适合内容非常多的网页</p></li></ol><h1 id=二、如何测试响应式网页><a href=#二、如何测试响应式网页 class=headerlink title=二、如何测试响应式网页></a>二、如何测试响应式网页</h1><p>1、真实物理设备</p><pre><code>优点：测试结构真实可靠
+不足：测试任务量太大</code></pre><p>2、使用第三方软件</p><pre><code>优点：无需添置真实设备
+不足：软件测试效率低，部分功能无法测试，测试结果有待进一步验证</code></pre><p>3、使用浏览器模拟器测试</p><pre><code>优点：测试功能强大，简单易用，
+不足：测试结果有待进一步验证</code></pre><h1 id=三、响应式布局必须清楚的两个概念><a href=#三、响应式布局必须清楚的两个概念 class=headerlink title=三、响应式布局必须清楚的两个概念></a>三、响应式布局必须清楚的两个概念</h1><pre><code>1. viewport - 视口
 
    1) 2010年之前，html网页基本都是为pc设计的，宽度比较大,在手机上的显示内容会挤压到一块，后来iOSiOS引入了viewport(视口)的概念，来优化手机上观看网站的体验
 
@@ -240,7 +102,7 @@
 
        @media screen and (min-width: 990px) {}
 
-  https://wangliguang.github.io/categories/</code></pre><h1 id="四、如何编写响应式网页"><a href="#四、如何编写响应式网页" class="headerlink" title="四、如何编写响应式网页"></a>四、如何编写响应式网页</h1><pre><code>1. 在head标签中，声明viewport元标签, 使网页的视口和浏览器的宽高保持一致
+  https://wangliguang.github.io/categories/</code></pre><h1 id=四、如何编写响应式网页><a href=#四、如何编写响应式网页 class=headerlink title=四、如何编写响应式网页></a>四、如何编写响应式网页</h1><pre><code>1. 在head标签中，声明viewport元标签, 使网页的视口和浏览器的宽高保持一致
 
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, user-scalable=no&quot; &gt;
 
@@ -279,7 +141,7 @@
        img {
 
           max-width:100%;
-        }</code></pre><h1 id="五、-Bootstrap"><a href="#五、-Bootstrap" class="headerlink" title="五、 Bootstrap"></a>五、 Bootstrap</h1><pre><code>www.bootcss.com
+        }</code></pre><h1 id=五、-Bootstrap><a href=#五、-Bootstrap class=headerlink title="五、 Bootstrap"></a>五、 Bootstrap</h1><pre><code>www.bootcss.com
 
 1. 是一个html/css/js框架，适用于移动设备优先的响应式网页
 
@@ -395,7 +257,7 @@
 
    3. 组件commponent
    4. 插件plugin
-   5. 定制customize</code></pre><h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><pre><code>1. 响应式布局就是bootstrap
+   5. 定制customize</code></pre><h1 id=总结：><a href=#总结： class=headerlink title=总结：></a>总结：</h1><pre><code>1. 响应式布局就是bootstrap
 
   错的，使用bootstrap是为了更加简单的做响应式页面
 
@@ -425,75 +287,4 @@
 
    5） 给元素设置类
 
-   6.）导入bootstrap的关键js文件</code></pre>
-        </div>
-
-        
-            <section class="post-copyright">
-                
-                    <p class="copyright-item">
-                        <span>Author:</span>
-                        <span>jianjian</span>
-                    </p>
-                
-                
-                    <p class="copyright-item">
-                        <span>Permalink:</span>
-                        <span><a href="http://yoursite.com/2017/02/16/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/">http://yoursite.com/2017/02/16/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/</a></span>
-                    </p>
-                
-                
-                    <p class="copyright-item">
-                        <span>License:</span>
-                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
-                    </p>
-                
-                
-                     <p class="copyright-item">
-                         <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY<strong>?</span>
-                     </p>
-                
-
-            </section>
-        
-        <section class="post-tags">
-            <div>
-                <span>Tag(s):</span>
-                <span class="tag">
-                    
-                    
-                        <a href="/tags/web%E5%89%8D%E7%AB%AF/"># web前端</a>
-                    
-                        
-                </span>
-            </div>
-            <div>
-                <a href="javascript:window.history.back();" target="_blank" rel="noopener">back</a>
-                <span>· </span>
-                <a href="/">home</a>
-            </div>
-        </section>
-        <section class="post-nav">
-            
-                <a class="prev" rel="prev" href="/2017/02/17/bootstrap%E4%B9%8B%E6%A0%BC%E6%A0%85%E5%8C%96%E5%B8%83%E5%B1%80%E5%92%8C%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6/">bootstrap之格栅化布局和常用组件</a>
-            
-            
-            <a class="next" rel="next" href="/2016/12/29/jquery%E4%B8%AD%E7%9A%84ajax/">jquery中的ajax</a>
-            
-        </section>
-
-
-    </article>
-</div>
-
-        </div>
-        <footer id="footer" class="footer">
-    <div class="copyright">
-        <span>© jianjian | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
-    </div>
-</footer>
-
-    </div>
-</body>
-</html>
+   6.）导入bootstrap的关键js文件</code></pre></div><section class=post-copyright><p class=copyright-item><span>Author:</span> <span>jianjian</span></p><p class=copyright-item><span>Permalink:</span> <span><a href="http://yoursite.com/2017/02/16/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/">http://yoursite.com/2017/02/16/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/</a></span></p><p class=copyright-item><span>License:</span> <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target=_blank rel=noopener>CC-BY-NC-4.0</a> LICENSE</span></p><p class=copyright-item><span>Slogan:</span> <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span></p></section><section class=post-tags><div><span>Tag(s):</span> <span class=tag><a href="/tags/web%E5%89%8D%E7%AB%AF/"># web前端</a></span></div><div><a href=javascript:window.history.back(); target=_blank rel=noopener>back</a> <span>·</span> <a href="/">home</a></div></section><section class=post-nav><a class=prev rel=prev href="/2017/02/17/bootstrap%E4%B9%8B%E6%A0%BC%E6%A0%85%E5%8C%96%E5%B8%83%E5%B1%80%E5%92%8C%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6/">bootstrap之格栅化布局和常用组件</a> <a class=next rel=next href="/2016/12/29/jquery%E4%B8%AD%E7%9A%84ajax/">jquery中的ajax</a></section></article></div></div><footer id=footer class=footer><div class=copyright><span>© jianjian | Powered by <a href=https://hexo.io target=_blank>Hexo</a> & <a href=https://github.com/Siricee/hexo-theme-Chic target=_blank>Chic</a></span></div></footer></div></body></html>

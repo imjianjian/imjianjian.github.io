@@ -1,89 +1,4 @@
-<!DOCTYPE html>
-<html lang="">
-<head>
-    <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <meta name="author" content="jianjian">
-
-
-
-
-
-<title>bootstrap之格栅化布局和常用组件 | imjianjian</title>
-
-
-
-    <link rel="icon" href="/favicon.ico">
-
-
-
-
-    <!-- stylesheets list from _config.yml -->
-    
-    <link rel="stylesheet" href="/css/style.css">
-    
-
-
-
-    <!-- scripts list from _config.yml -->
-    
-    <script src="/js/script.js"></script>
-    
-    <script src="/js/tocbot.min.js"></script>
-    
-
-
-
-    
-    
-        
-    
-
-
-</head>
-<body>
-    <div class="wrapper">
-        <header>
-    <nav class="navbar">
-        <div class="container">
-            <div class="navbar-header header-logo"><a href="/">imjianjian&#39;s Blog</a></div>
-            <div class="menu navbar-right">
-                
-                    <a class="menu-item" href="/archives">Posts</a>
-                
-                    <a class="menu-item" href="/tags">Tags</a>
-                
-                <input id="switch_default" type="checkbox" class="switch_default">
-                <label for="switch_default" class="toggleBtn"></label>
-            </div>
-
-        </div>
-    </nav>
-
-    
-    <nav class="navbar-mobile" id="nav-mobile">
-        <div class="container">
-            <div class="navbar-header">
-                <div>
-                    <a href="/">imjianjian&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
-                </div>
-                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
-            </div>
-            <div class="menu" id="mobile-menu">
-                
-                    <a class="menu-item" href="/archives">Posts</a>
-                
-                    <a class="menu-item" href="/tags">Tags</a>
-                
-            </div>
-        </div>
-    </nav>
-
-</header>
-<script>
+<!DOCTYPE html><html><head><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"><meta http-equiv=X-UA-Compatible content="ie=edge"><meta name=author content=jianjian><title>bootstrap之格栅化布局和常用组件 | imjianjian</title><link rel=icon href=/favicon.ico><link rel=stylesheet href=/css/style.css><script src=/js/script.js></script><script src=/js/tocbot.min.js></script></head><body><div class=wrapper><header><nav class=navbar><div class=container><div class="navbar-header header-logo"><a href="/">imjianjian&#39;s Blog</a></div><div class="menu navbar-right"><a class=menu-item href=/archives>Posts</a> <a class=menu-item href=/tags>Tags</a> <input id=switch_default type=checkbox class=switch_default><label for=switch_default class=toggleBtn></label></div></div></nav><nav class=navbar-mobile id=nav-mobile><div class=container><div class=navbar-header><div><a href="/">imjianjian&#39;s Blog</a><a id=mobile-toggle-theme>·&nbsp;Light</a></div><div class=menu-toggle onclick=mobileBtn()>&#9776; Menu</div></div><div class=menu id=mobile-menu><a class=menu-item href=/archives>Posts</a> <a class=menu-item href=/tags>Tags</a></div></div></nav></header><script>
     var mobileBtn = function f() {
         var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
         var mobileMenu = document.getElementById("mobile-menu");
@@ -95,22 +10,7 @@
             mobileMenu.classList.add("active")
         }
     }
-</script>
-        <div class="main">
-            <div class="container">
-    
-    
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
+</script><div class=main><div class=container><div class=post-toc><div class=tocbot-list></div><div class=tocbot-list-menu><a class=tocbot-toc-expand onclick=expand_toc()>Expand all</a> <a onclick=go_top()>Back to top</a> <a onclick=go_bottom()>Go to bottom</a></div></div><script>
     document.ready(
         function () {
             tocbot.init({
@@ -160,70 +60,21 @@
         window.scrollTo(0, document.body.scrollHeight);
     }
 
-</script>
-    
-
-    
-    <article class="post-wrap">
-        <header class="post-header">
-            <h1 class="post-title">bootstrap之格栅化布局和常用组件</h1>
-            
-                <div class="post-meta">
-                    
-                        Author: <a itemprop="author" rel="author" href="/">jianjian</a>
-                    
-
-                    
-                        <span class="post-time">
-                        Date: <a href="#">February 17, 2017&nbsp;&nbsp;16:16:25</a>
-                        </span>
-                    
-                    
-                </div>
-            
-        </header>
-
-        <div class="post-content">
-            <h2 id="一-bootstrap-全局css样式-栅格布局系统-重点难点"><a href="#一-bootstrap-全局css样式-栅格布局系统-重点难点" class="headerlink" title="一. bootstrap-全局css样式-栅格布局系统-重点难点"></a>一. bootstrap-全局css样式-栅格布局系统-重点难点</h2><ol>
-<li><p>所有的行必须放在容器中.container或container-fluid</p>
-<pre><code>container
+</script><article class=post-wrap><header class=post-header><h1 class=post-title>bootstrap之格栅化布局和常用组件</h1><div class=post-meta>Author: <a itemprop=author rel=author href="/">jianjian</a> <span class=post-time>Date: <a href=#>February 17, 2017&nbsp;&nbsp;16:16:25</a></span></div></header><div class=post-content><h2 id=一-bootstrap-全局css样式-栅格布局系统-重点难点><a href=#一-bootstrap-全局css样式-栅格布局系统-重点难点 class=headerlink title="一. bootstrap-全局css样式-栅格布局系统-重点难点"></a>一. bootstrap-全局css样式-栅格布局系统-重点难点</h2><ol><li><p>所有的行必须放在容器中.container或container-fluid</p><pre><code>container
   screen&gt;1200px(超大PC显示器-lg)  容器宽1170px
   screen&gt;992px(普通PC显示器-md)   容器宽970px
   screen&gt;768px(平板显示器-sm)     容器宽750px
   screen&lt;768px(手机显示器-xs)     容器宽auto
 
-container-fluid: width:auto+befor+after</code></pre></li>
-<li><p>分为多行，一行最多分为12列</p>
-</li>
-<li><p>网页内容只能放在列中，不能放到行中</p>
-</li>
-<li><p>可以在col中再嵌套row</p>
-</li>
-<li><p>col分为四大类 col-xs-i col-sm-i col-md-i col-lg-i，  i值可以为1-12，值为某个列的宽度</p>
-</li>
-<li><p>可以为一个列指定不同屏幕下的宽度</p>
-</li>
-<li><p>col-lg-i 大PC<br>   col-md-i 大PC 普通PC<br>   col-sm-i 大PC 普通PC 平板<br>   col-xs-i 大PC 普通PC 平板 手机</p>
-</li>
-<li><p>hidden-lg 大PC<br>   hidden-md 普通PC<br>   hidden-sm 平板<br>   hidden-xs 手机</p>
-</li>
-<li><p>列的偏移问题</p>
-<pre><code>col-xs-offset-i 大PC 普通PC 平板 手机
+container-fluid: width:auto+befor+after</code></pre></li><li><p>分为多行，一行最多分为12列</p></li><li><p>网页内容只能放在列中，不能放到行中</p></li><li><p>可以在col中再嵌套row</p></li><li><p>col分为四大类 col-xs-i col-sm-i col-md-i col-lg-i， i值可以为1-12，值为某个列的宽度</p></li><li><p>可以为一个列指定不同屏幕下的宽度</p></li><li><p>col-lg-i 大PC<br>col-md-i 大PC 普通PC<br>col-sm-i 大PC 普通PC 平板<br>col-xs-i 大PC 普通PC 平板 手机</p></li><li><p>hidden-lg 大PC<br>hidden-md 普通PC<br>hidden-sm 平板<br>hidden-xs 手机</p></li><li><p>列的偏移问题</p><pre><code>col-xs-offset-i 大PC 普通PC 平板 手机
 col-sm-offset-i 大PC 普通PC 平板
 col-md-offset-i 大PC 普通PC
-col-lg-offset-i 大PC</code></pre><p>一行中放一列<br>一行中放多列<br>一个行中指定不同宽度的列<br>一个列中指定不同屏幕下的不同宽度<br>不同屏幕下列宽的有效范围</p>
-</li>
-<li><p>使用栅格系统实现响应式布局</p>
-</li>
-<li><p>补充</p>
-<p>  1、 web开发页面布局可以采用的方式</p>
-<pre><code>1) 使用table做布局
+col-lg-offset-i 大PC</code></pre><p>一行中放一列<br>一行中放多列<br>一个行中指定不同宽度的列<br>一个列中指定不同屏幕下的不同宽度<br>不同屏幕下列宽的有效范围</p></li><li><p>使用栅格系统实现响应式布局</p></li><li><p>补充</p><p>1、 web开发页面布局可以采用的方式</p><pre><code>1) 使用table做布局
    简单不易出错，但加载效率低
 2) HTML+CSS
    加载速度快，灵活，不易控制
 3）使用bootstrap提供的栅格(grid layout)布局系统
-   加载速度快，灵活，支持响应式功能，容易控制(有行和列的概念)</code></pre><p>  2、 css相关知识</p>
-<pre><code>1) 如何解决父元素的第一个子元素margin-top越界问题
+   加载速度快，灵活，支持响应式功能，容易控制(有行和列的概念)</code></pre><p>2、 css相关知识</p><pre><code>1) 如何解决父元素的第一个子元素margin-top越界问题
    给父元素加border-top
    给父元素指定padding-top
    给父元素指定overflow:hidden
@@ -243,23 +94,11 @@ col-lg-offset-i 大PC</code></pre><p>一行中放一列<br>一行中放多列<br
        content:&quot;&quot;;
        display:table;
        clear:both;
-     }</code></pre><p>  3、 bootstrap系统中容器的特点</p>
-<pre><code>宽度做了媒体查询
-添加了前置和后置内容生成，可以防止子元素的越界,浮动影响</code></pre></li>
-</ol>
-<h2 id="二-bootstrap-全局css样式-表单-重点难点"><a href="#二-bootstrap-全局css样式-表单-重点难点" class="headerlink" title="二. bootstrap-全局css样式-表单-重点难点"></a>二. bootstrap-全局css样式-表单-重点难点</h2><pre><code>1. bootstrap中的表单分为三种
+     }</code></pre><p>3、 bootstrap系统中容器的特点</p><pre><code>宽度做了媒体查询
+添加了前置和后置内容生成，可以防止子元素的越界,浮动影响</code></pre></li></ol><h2 id=二-bootstrap-全局css样式-表单-重点难点><a href=#二-bootstrap-全局css样式-表单-重点难点 class=headerlink title="二. bootstrap-全局css样式-表单-重点难点"></a>二. bootstrap-全局css样式-表单-重点难点</h2><pre><code>1. bootstrap中的表单分为三种
 
   1) 默认表单
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;form&gt;</span><br><span class="line"></span><br><span class="line">   &lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">     &lt;label class=&quot;control-label&quot;&gt;&lt;/label&gt;</span><br><span class="line"></span><br><span class="line">     &lt;input class=&quot;form-control&quot;&gt;</span><br><span class="line">     &lt;span class=&quot;help-control&quot;&gt;&lt;/span&gt;</span><br><span class="line"></span><br><span class="line">   &lt;/div&gt;</span><br><span class="line">   </span><br><span class="line">   //bootstrap指定：单选和双选按钮要放到label标签中</span><br><span class="line"></span><br><span class="line">   &lt;div class=&quot;checkbox&quot;&gt;</span><br><span class="line">   &lt;label&gt;</span><br><span class="line">       &lt;input type=&quot;checkbox&quot;&gt;我接受本站的使用条款</span><br><span class="line">   &lt;/label&gt;</span><br><span class="line">   &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
-  2) 行内表单
-
-     给表单添加form-inline即可
-
-  3) 水平表单
-
-
-     默认的栅格系统：container-&gt;row-&gt;col-*
-     默认的栅格系统：form-horizontal-&gt;form-group-&gt;col-*</code></pre><h2 id="三-bootstrap-组件-图标字体"><a href="#三-bootstrap-组件-图标字体" class="headerlink" title="三. bootstrap-组件-图标字体"></a>三. bootstrap-组件-图标字体</h2><pre><code>1.glyphicons是一套收费的图标字体，提供了web/移动开发中常用的小图标
+        <figure class="highlight plain"><table><tr><td class=gutter><pre><span class=line>1</span><br><span class=line>2</span><br><span class=line>3</span><br><span class=line>4</span><br><span class=line>5</span><br><span class=line>6</span><br><span class=line>7</span><br><span class=line>8</span><br><span class=line>9</span><br><span class=line>10</span><br><span class=line>11</span><br><span class=line>12</span><br><span class=line>13</span><br><span class=line>14</span><br><span class=line>15</span><br><span class=line>16</span><br><span class=line>17</span><br><span class=line>18</span><br><span class=line>19</span><br></pre></td><td class=code><pre><span class=line>&lt;form&gt;</span><br><span class=line></span><br><span class=line>   &lt;div class=&quot;form-group&quot;&gt;</span><br><span class=line>     &lt;label class=&quot;control-label&quot;&gt;&lt;/label&gt;</span><br><span class=line></span><br><span class=line>     &lt;input class=&quot;form-control&quot;&gt;</span><br><span class=line>     &lt;span class=&quot;help-control&quot;&gt;&lt;/span&gt;</span><br><span class=line></span><br><span class=line>   &lt;/div&gt;</span><br><span class=line>   </span><br><span class=line>   //bootstrap指定：单选和双选按钮要放到label标签中</span><br><span class=line></span><br><span class=line>   &lt;div class=&quot;checkbox&quot;&gt;</span><br><span class=line>   &lt;label&gt;</span><br><span class=line>       &lt;input type=&quot;checkbox&quot;&gt;我接受本站的使用条款</span><br><span class=line>   &lt;/label&gt;</span><br><span class=line>   &lt;/div&gt;</span><br><span class=line></span><br><span class=line>&lt;/form&gt;</span><br></pre></td></tr></table></figure> 2) 行内表单 给表单添加form-inline即可 3) 水平表单 默认的栅格系统：container-&gt;row-&gt;col-* 默认的栅格系统：form-horizontal-&gt;form-group-&gt;col-*</code></pre><h2 id=三-bootstrap-组件-图标字体><a href=#三-bootstrap-组件-图标字体 class=headerlink title="三. bootstrap-组件-图标字体"></a>三. bootstrap-组件-图标字体</h2><pre><code>1.glyphicons是一套收费的图标字体，提供了web/移动开发中常用的小图标
 
 2. bootstrap中可以免费使用这套字体中的250+个，以服务器端字体形式出现的
 
@@ -271,12 +110,12 @@ col-lg-offset-i 大PC</code></pre><p>一行中放一列<br>一行中放多列<br
 
    &lt;span class=&quot;glyphicon glyphicon-user&quot;&gt;&lt;/span&gt;
 
-   字体文件夹fonts必须跟html文件同级</code></pre><h2 id="四-bootstrap-组件-按钮组"><a href="#四-bootstrap-组件-按钮组" class="headerlink" title="四. bootstrap-组件-按钮组"></a>四. bootstrap-组件-按钮组</h2><pre><code>btn-group 水平按钮组
+   字体文件夹fonts必须跟html文件同级</code></pre><h2 id=四-bootstrap-组件-按钮组><a href=#四-bootstrap-组件-按钮组 class=headerlink title="四. bootstrap-组件-按钮组"></a>四. bootstrap-组件-按钮组</h2><pre><code>btn-group 水平按钮组
 btn-group-vertical 竖直按钮组
 btn-group btn-group-justified 水平且两端对齐的按钮组
 btn-group-lg
 btn-group-xm
-btn-group-xs</code></pre><h2 id="五-bootstrap-组件-下拉菜单-重点简单"><a href="#五-bootstrap-组件-下拉菜单-重点简单" class="headerlink" title="五. bootstrap-组件-下拉菜单 重点简单"></a>五. bootstrap-组件-下拉菜单 重点简单</h2><pre><code>1. 必须html结构
+btn-group-xs</code></pre><h2 id=五-bootstrap-组件-下拉菜单-重点简单><a href=#五-bootstrap-组件-下拉菜单-重点简单 class=headerlink title="五. bootstrap-组件-下拉菜单 重点简单"></a>五. bootstrap-组件-下拉菜单 重点简单</h2><pre><code>1. 必须html结构
 
    &lt;div class=&quot;dropdown&quot;&gt; 相对定义的父元素
      &lt;a data-toggle=&quot;dropdown&quot;&gt;触发元素&lt;/a&gt;
@@ -285,7 +124,7 @@ btn-group-xs</code></pre><h2 id="五-bootstrap-组件-下拉菜单-重点简单"
 
 2. 
    divider 分割线
-   dropdown-header 分类头</code></pre><h2 id="六-bootstrap-组件-导航-重点简单"><a href="#六-bootstrap-组件-导航-重点简单" class="headerlink" title="六. bootstrap-组件-导航  重点简单"></a>六. bootstrap-组件-导航  重点简单</h2><pre><code>1. 标签页导航 
+   dropdown-header 分类头</code></pre><h2 id=六-bootstrap-组件-导航-重点简单><a href=#六-bootstrap-组件-导航-重点简单 class=headerlink title="六. bootstrap-组件-导航 重点简单"></a>六. bootstrap-组件-导航 重点简单</h2><pre><code>1. 标签页导航 
 
     &lt;ul class=&quot;nav nav-tabs&quot;&gt;
           &lt;li  class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
@@ -303,75 +142,4 @@ btn-group-xs</code></pre><h2 id="五-bootstrap-组件-下拉菜单-重点简单"
     &lt;/ul&gt;
 3. 两端对其的导航 nav nav-tabs nav-justified
 
-4. 竖直放置的胶囊导航 nav nav-pills nav-stacked</code></pre>
-        </div>
-
-        
-            <section class="post-copyright">
-                
-                    <p class="copyright-item">
-                        <span>Author:</span>
-                        <span>jianjian</span>
-                    </p>
-                
-                
-                    <p class="copyright-item">
-                        <span>Permalink:</span>
-                        <span><a href="http://yoursite.com/2017/02/17/bootstrap%E4%B9%8B%E6%A0%BC%E6%A0%85%E5%8C%96%E5%B8%83%E5%B1%80%E5%92%8C%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6/">http://yoursite.com/2017/02/17/bootstrap%E4%B9%8B%E6%A0%BC%E6%A0%85%E5%8C%96%E5%B8%83%E5%B1%80%E5%92%8C%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6/</a></span>
-                    </p>
-                
-                
-                    <p class="copyright-item">
-                        <span>License:</span>
-                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
-                    </p>
-                
-                
-                     <p class="copyright-item">
-                         <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY<strong>?</span>
-                     </p>
-                
-
-            </section>
-        
-        <section class="post-tags">
-            <div>
-                <span>Tag(s):</span>
-                <span class="tag">
-                    
-                    
-                        <a href="/tags/web%E5%89%8D%E7%AB%AF/"># web前端</a>
-                    
-                        
-                </span>
-            </div>
-            <div>
-                <a href="javascript:window.history.back();" target="_blank" rel="noopener">back</a>
-                <span>· </span>
-                <a href="/">home</a>
-            </div>
-        </section>
-        <section class="post-nav">
-            
-                <a class="prev" rel="prev" href="/2017/02/26/JavaScript%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">JavaScript作用域与作用域链</a>
-            
-            
-            <a class="next" rel="next" href="/2017/02/16/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/">响应式布局学习</a>
-            
-        </section>
-
-
-    </article>
-</div>
-
-        </div>
-        <footer id="footer" class="footer">
-    <div class="copyright">
-        <span>© jianjian | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
-    </div>
-</footer>
-
-    </div>
-</body>
-</html>
+4. 竖直放置的胶囊导航 nav nav-pills nav-stacked</code></pre></div><section class=post-copyright><p class=copyright-item><span>Author:</span> <span>jianjian</span></p><p class=copyright-item><span>Permalink:</span> <span><a href="http://yoursite.com/2017/02/17/bootstrap%E4%B9%8B%E6%A0%BC%E6%A0%85%E5%8C%96%E5%B8%83%E5%B1%80%E5%92%8C%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6/">http://yoursite.com/2017/02/17/bootstrap%E4%B9%8B%E6%A0%BC%E6%A0%85%E5%8C%96%E5%B8%83%E5%B1%80%E5%92%8C%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6/</a></span></p><p class=copyright-item><span>License:</span> <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target=_blank rel=noopener>CC-BY-NC-4.0</a> LICENSE</span></p><p class=copyright-item><span>Slogan:</span> <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span></p></section><section class=post-tags><div><span>Tag(s):</span> <span class=tag><a href="/tags/web%E5%89%8D%E7%AB%AF/"># web前端</a></span></div><div><a href=javascript:window.history.back(); target=_blank rel=noopener>back</a> <span>·</span> <a href="/">home</a></div></section><section class=post-nav><a class=prev rel=prev href="/2017/02/26/JavaScript%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">JavaScript作用域与作用域链</a> <a class=next rel=next href="/2017/02/16/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0/">响应式布局学习</a></section></article></div></div><footer id=footer class=footer><div class=copyright><span>© jianjian | Powered by <a href=https://hexo.io target=_blank>Hexo</a> & <a href=https://github.com/Siricee/hexo-theme-Chic target=_blank>Chic</a></span></div></footer></div></body></html>
